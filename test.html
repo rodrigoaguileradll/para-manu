@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Manu | Nuestra Ruta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0d0415;
+            --bg-purple: #1a0b2e;
+            --bg-sunrise: #702283;
+            --accent-purple: #9d81d4;
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            /* Amanecer: El degradado se extiende para que el fucsia solo aparezca al final */
+            background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-purple) 35%, var(--bg-sunrise) 100%);
+            background-attachment: scroll;
+            color: #ffffff;
+            min-height: 400vh; 
+        }
+
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+
+        /* HEADER & ESTRELLAS */
+        .stars-overlay {
+            background-image: radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)), radial-gradient(1.5px 1.5px at 150px 150px, #fff, rgba(0,0,0,0)), radial-gradient(2px 2px at 280px 70px, #fff, rgba(0,0,0,0));
+            background-size: 300px 300px; opacity: 0.5;
+        }
+        .glow-text {
+            background: linear-gradient(90deg, #fff, var(--accent-purple), #fff);
+            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: glow-move 4s linear infinite;
+        }
+        @keyframes glow-move { to { background-position: 200% center; } }
+
+        /* MARCOS CUADRADOS GRANDES */
+        .profile-card { width: 140px; height: 160px; border-radius: 2rem; border: 2px solid var(--accent-purple); overflow: hidden; box-shadow: 0 0 20px rgba(157, 129, 212, 0.4); }
+
+        /* INFINITE LOOP CAROUSEL */
+        .carousel-container { overflow: hidden; position: relative; width: 100%; }
+        .carousel-track { display: flex; width: calc(280px * 12); animation: scroll 25s linear infinite; }
+        .carousel-track img { width: 280px; height: 380px; object-fit: cover; border-radius: 2rem; margin: 0 15px; flex-shrink: 0; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-280px * 6)); } }
+
+        /* ROADMAP */
+        .roadmap-line { position: absolute; left: 50%; transform: translateX(-50%); width: 2px; background: linear-gradient(to bottom, transparent, var(--accent-purple), transparent); z-index: 0; }
+        .roadmap-dot { position: absolute; left: 50%; transform: translateX(-50%); width: 14px; height: 14px; background: var(--accent-purple); border-radius: 50%; z-index: 1; box-shadow: 0 0 15px var(--accent-purple); }
+        .photo-frame { transition: transform 0.4s ease; overflow: hidden; border-radius: 1.5rem; }
+        .photo-frame:hover { transform: scale(1.02); }
+
+        /* SERIES CON EFECTO DESORDEN */
+        .series-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        .series-card:nth-child(odd) { transform: rotate(-3deg) translateY(10px); }
+        .series-card:nth-child(even) { transform: rotate(3deg) translateY(-10px); }
+        .series-card:hover { transform: rotate(0deg) scale(1.05); z-index: 20; }
+
+        .mystery-box { background: repeating-linear-gradient(45deg, #1a0b2e, #1a0b2e 10px, #251042 10px, #251042 20px); filter: grayscale(1) blur(2px); transition: 0.6s; border: 2px dashed rgba(157, 129, 212, 0.3); }
+        .mystery-box:hover { filter: grayscale(0) blur(0); border-color: var(--accent-purple); }
+    </style>
+</head>
+<body>
+
+    <section class="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0 bg-[url('TU_FOTO_PRINCIPAL.jpg')] bg-cover bg-center opacity-30"></div>
+        <div class="absolute inset-0 z-5 stars-overlay"></div>
+        <div class="relative z-20 text-center px-4">
+            <h1 class="text-6xl md:text-8xl font-serif font-bold mb-4 italic glow-text">Para Manu</h1>
+            <p class="text-lg md:text-2xl font-light tracking-[0.4em] uppercase opacity-70 text-[#c7b3e5] mb-12">Nuestra historia en ruta</p>
+            
+            <div class="flex justify-center gap-6 md:gap-16">
+                <div class="flex flex-col items-center">
+                    <div class="profile-card mb-4"><img src="img/rodri.jpg" class="w-full h-full object-cover"></div>
+                    <p class="text-[#9d81d4] font-bold text-xs uppercase tracking-widest">Rodri</p>
+                    <p class="text-[10px] opacity-60">17/03/2000</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="profile-card mb-4"><img src="img/manu.jpg" class="w-full h-full object-cover"></div>
+                    <p class="text-[#9d81d4] font-bold text-xs uppercase tracking-widest">Manu</p>
+                    <p class="text-[10px] opacity-60">22/11/1990</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="py-20 px-6 max-w-4xl mx-auto">
+    <div class="glass p-8 md:p-12 rounded-[3rem] shadow-2xl overflow-hidden relative">
+        
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-serif italic mb-6 text-[#d8c5f5]">El audio que me tatuó</h2>
+            <audio controls class="w-full max-w-sm mx-auto opacity-80 mb-6">
+                <source src="media/miamorsito.mp3" type="audio/mpeg">
+            </audio>
+            <p class="text-sm italic opacity-70 leading-relaxed max-w-md mx-auto">
+                "Ese momento en el que escuché tu voz y supe que quería estar a tu lado"
+            </p>
+        </div>
+
+        <div class="border-t border-white/10 my-10 relative">
+            <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#1a0b2e] px-4 text-[10px] tracking-[0.3em] opacity-40 uppercase">Mis primeras palabras</span>
+        </div>
+
+                <div class="text-center mb-16">
+                                <p class="text-sm italic opacity-70 leading-relaxed max-w-md mx-auto">
+                "y aca fue cuando me decicí a hablarte por mensaje de voz quitandome la pena"
+            </p>
+            <audio controls class="w-full max-w-sm mx-auto opacity-80 mb-6">
+                <source src="media/rodri1.mp3" type="audio/mpeg">
+            </audio>
+                        <audio controls class="w-full max-w-sm mx-auto opacity-80 mb-6">
+                <source src="media/rodri2.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+
+    </div>
+</section>
+
+    <section class="py-20 carousel-container">
+        <h2 class="text-center font-serif text-3xl italic mb-12">Momentos en Loop</h2>
+        <div class="carousel-track">
+            <img src="img/carrusel/1.JPG"><img src="img/carrusel/7.JPG"><img src="img/carrusel/3.JPG"><img src="img/carrusel/4.JPG"><img src="img/carrusel/5.JPG"><img src="img/carrusel/6.jpg">
+            <img src="img/carrusel/1.JPG"><img src="img/carrusel/7.JPG"><img src="img/carrusel/3.JPG"><img src="img/carrusel/4.JPG"><img src="img/carrusel/5.JPG"><img src="img/carrusel/6.jpg">
+        </div>
+    </section>
+
+    <section class="py-20 px-6 text-center">
+        <div class="max-w-xl mx-auto border border-white/10 p-10 rounded-[3rem] bg-black/20">
+            <span class="text-[10px] tracking-[0.5em] text-[#9d81d4] uppercase">El inicio de todo</span>
+            <h2 class="text-5xl font-serif italic mt-4">21 de Noviembre, 2025 6:16 pm</h2>
+            <p class="mt-4 text-xs opacity-50 italic">El día que nuestras rutas se cruzaron.</p>
+        </div>
+    </section>
+
+    <section class="relative py-20 px-6">
+        <div class="max-w-6xl mx-auto relative">
+            <div class="roadmap-line top-0 bottom-0"></div>
+
+            <div class="relative grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-40 z-10">
+                <div class="roadmap-dot top-1/2"></div>
+                <div class="text-center md:text-right md:pr-12 order-2 md:order-1">
+                    <span class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest">El Inicio</span>
+                    <h3 class="text-3xl font-serif mt-3 mb-4 italic">El primer 'hola'</h3>
+                    <p class="text-sm opacity-70 leading-relaxed font-light">
+                        Debo confesar que ese día iba muy nervioso, era la primera vez que nos veríamos en persona y me asustaba el hecho de no gustarte porque tú a mi ya me gustabas, me preguntaste sí quería algo de comer y de los nervios hasta se me olvido. Por cierto ese mismo día compré mis audifonos sony y no recuerdo si los lleve para esa cita, lo que si recuerdo es esa fragancia que traia puesta usted realmente me hipnotizo y apartir de ahí esa fragancia tenia un nomnbre Manuel Fuentes, recuerdo que cuando me vino a dejar a casa nos quedamos en un lugar oscurito y yo no podía soltarlo, no queria despegarme de usted y al llegar a casa a acostarme tenía tan presente todo lo que hicimos esa noche.
+                    </p>
+                </div>
+    <div class="photo-frame glass p-0 overflow-hidden order-1 md:order-2 cursor-pointer group relative" onclick="changePhoto(this)">
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 flex items-center gap-2 shadow-2xl transition-all group-hover:bg-[#9d81d4]/80">
+        <svg class="w-3 h-3 text-white opacity-80 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"></path>
+        </svg>
+        <span class="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white font-semibold">
+            Clic para ver más
+        </span>
+    </div>
+        
+        <div class="photo-stack relative h-80 w-full overflow-hidden rounded-2xl bg-black/30">
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-100 flex items-center justify-center p-2">
+                <img src="img/roadmap/1.JPG" class="w-full h-full object-cover rounded-xl">
+            </div>
+            
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/36.jpg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                        <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/56.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+        </div>
+    </div>
+            </div>
+
+<div class="relative grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-40 z-10">
+    <div class="roadmap-dot top-1/2"></div>
+    
+    <div class="photo-frame glass p-3 cursor-pointer group relative" onclick="changePhoto(this)">
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 flex items-center gap-2 shadow-2xl transition-all group-hover:bg-[#9d81d4]/80">
+        <svg class="w-3 h-3 text-white opacity-80 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"></path>
+        </svg>
+        <span class="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white font-semibold">
+            Clic para ver más
+        </span>
+    </div>
+        <div class="photo-stack relative h-80 w-full overflow-hidden rounded-2xl">
+            <img src="img/roadmap/2.JPG" class="active-photo absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100">
+            <img src="img/roadmap/3.JPG" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0">
+            <img src="img/roadmap/4.jpeg" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0">
+        </div>
+    </div>
+
+    <div class="text-center md:text-left md:pl-12">
+        <span class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest">Justo un día despues</span>
+        <h3 class="text-3xl font-serif mt-3 mb-4 italic">El día de su cumpleaños</h3>
+        <p class="text-sm opacity-70 leading-relaxed font-light">
+            Para mi sorpresa su cumpleaños fue un día despues de habernos conocido, justo cuando ibamos bromeando sobre la calle llamada 22 de noviembre y me parece curiso el hecho de no pasamos juntos el día de nuestros cumpleaños pero si el día antes y despues.
+        </p>
+    </div>
+</div>
+
+<div class="relative grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-40 z-10">
+    <div class="roadmap-dot top-1/2"></div>
+
+    <div class="text-center md:text-right md:pr-12 order-2 md:order-1">
+        <span class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest">cine, airbnb, cita dental</span>
+        <h3 class="text-3xl font-serif mt-3 mb-4 italic">Nuestra primera noche juntos</h3>
+        <p class="text-sm opacity-70 leading-relaxed font-light">
+            Esta noche fue tan especial porque aunque yo andaba malito del ojo no impidio que nos vieramos fuimos cinemark de la gran via a ver wicked for good para mi fue tan importante que usted me acompañara a ver la pelicula de mi cantante favorita y luego nos fuimos al airbnb a buscar que cenar. Acá debo disculparme porque cuando fuimos al burger king usted me dijo que si podía ayudarle con la cena y yo no entendí en ese momento, ahora entiendo a lo que se refeía 😅 al día siguiente me toco cita e brackets y mientras usted se fue al starbucks de metro a avanzar con su trabajo al llegar ahí compré 2 cinnamon dolce latte mi bebida favorita y a usted le gusto, en fin fue un día muy especial 💖
+        </p>
+    </div>
+
+    <div class="photo-frame glass p-0 overflow-hidden order-1 md:order-2 cursor-pointer group relative" onclick="changePhoto(this)">
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 flex items-center gap-2 shadow-2xl transition-all group-hover:bg-[#9d81d4]/80">
+        <svg class="w-3 h-3 text-white opacity-80 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"></path>
+        </svg>
+        <span class="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white font-semibold">
+            Clic para ver más
+        </span>
+    </div>
+        
+        <div class="photo-stack relative h-80 w-full overflow-hidden rounded-2xl bg-black/30">
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-100 flex items-center justify-center p-2">
+                <img src="img/roadmap/5.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+            
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/6.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                        <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/7.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                        <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/8.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                    <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/9.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="relative grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-40 z-10">
+    <div class="roadmap-dot top-1/2"></div>
+
+    <div class="photo-frame glass p-0 overflow-hidden cursor-pointer group relative" onclick="changePhoto(this)">
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 flex items-center gap-2 shadow-2xl transition-all group-hover:bg-[#9d81d4]/80">
+        <svg class="w-3 h-3 text-white opacity-80 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"></path>
+        </svg>
+        <span class="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white font-semibold">
+            Clic para ver más
+        </span>
+    </div>
+        
+        <div class="photo-stack relative h-80 w-full overflow-hidden rounded-2xl bg-black/30">
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-100 flex items-center justify-center p-2">
+                <img src="img/roadmap/10.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+            
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/11.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center md:text-left md:pl-12">
+        <span class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest">San Salvador, Biblioteca Nacional</span>
+        <h3 class="text-3xl font-serif mt-3 mb-4 italic">Nuestra salida al centro de San Salvador</h3>
+        <p class="text-sm opacity-70 leading-relaxed font-light">
+            Cuando me acepto una cita al centro de San Salvador en época navideña, fuimos a la cafetería de la Binaes a probar unos subways y unos smothies donde por cierto yo pedí coco y usted se lo termino tomando 😅 me gusto mucho que halla disfrutado esa salida juntos
+        </p>
+    </div>
+</div>
+
+<div class="relative grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-40 z-10">
+    <div class="roadmap-dot top-1/2"></div>
+
+    <div class="text-center md:text-right md:pr-12 order-2 md:order-1">
+        <span class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest">Volcan de San Salvador</span>
+        <h3 class="text-3xl font-serif mt-3 mb-4 italic">Mi último día de interciclo</h3>
+        <p class="text-sm opacity-70 leading-relaxed font-light">
+            Ese fue mi ultimo dia de clases en el interciclo de la u y aunque no esta 100% seguro de aprobar la materia usted siempre me apoyo y me motivo hasta el final y gran parte de mi resultado se lo debo a usted, ese mismo día al salir de la universidad usted paso por mí y como premio me llevo a cenar al volcan donde sacamos fotos muy hermosas y probamos el chocolate con marshmellows y aprovechamos de ver un capitulo de la serie de Sabrina en netflix, me sentí muy especial ese día porque sentí que usted compartía mi felicidad por esta libre del estres de la u
+        </p>
+    </div>
+
+    <div class="photo-frame glass p-0 overflow-hidden order-1 md:order-2 cursor-pointer group relative" onclick="changePhoto(this)">
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 flex items-center gap-2 shadow-2xl transition-all group-hover:bg-[#9d81d4]/80">
+        <svg class="w-3 h-3 text-white opacity-80 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"></path>
+        </svg>
+        <span class="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white font-semibold">
+            Clic para ver más
+        </span>
+    </div>
+        
+        <div class="photo-stack relative h-80 w-full overflow-hidden rounded-2xl bg-black/30">
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-100 flex items-center justify-center p-2">
+                <img src="img/roadmap/12.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+            
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/13.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+                        <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/14.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="relative grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-40 z-10">
+    <div class="roadmap-dot top-1/2"></div>
+
+    <div class="photo-frame glass p-0 overflow-hidden cursor-pointer group relative" onclick="changePhoto(this)">
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 flex items-center gap-2 shadow-2xl transition-all group-hover:bg-[#9d81d4]/80">
+        <svg class="w-3 h-3 text-white opacity-80 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"></path>
+        </svg>
+        <span class="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white font-semibold">
+            Clic para ver más
+        </span>
+    </div>
+        
+        <div class="photo-stack relative h-80 w-full overflow-hidden rounded-2xl bg-black/30">
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-100 flex items-center justify-center p-2">
+                <img src="img/roadmap/15.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+            
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/16.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+                        <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/17.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+                        <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/18.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+                        <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/19.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center md:text-left md:pl-12">
+        <span class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest">Soyapango</span>
+        <h3 class="text-3xl font-serif mt-3 mb-4 italic">Nuestra rutinas en el gym</h3>
+        <p class="text-sm opacity-70 leading-relaxed font-light">
+            La mayoría de las veces ibamos a hablar de la gente que nos caia mal 😂 pero creo que eramos muy buena pareja en el gym siempre me gusto verlo progresar y enserio me sentía muy especial cuando usted me pedía consejos a mi acerca del gym o de nutricion, muy buenas fotos las que nos sacamos
+        </p>
+    </div>
+</div>
+
+<div class="relative grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-40 z-10">
+    <div class="roadmap-dot top-1/2"></div>
+
+    <div class="text-center md:text-right md:pr-12 order-2 md:order-1">
+        <span class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest">En casita</span>
+        <h3 class="text-3xl font-serif mt-3 mb-4 italic">Cuando nos despertabamos sin ganas de nada</h3>
+        <p class="text-sm opacity-70 leading-relaxed font-light">
+            Esos días donde no había mucho por hacer pero aun asi me despertaba con una imagen suya descansando porque no tenía ganas del gym, como usted dice simplemente existiendo y lo haciamos para confirmar que seguiamos vivos, esas fotos donde usted salia chinito y despeinado son las que mas me encatan 🥰
+        </p>
+    </div>
+
+    <div class="photo-frame glass p-0 overflow-hidden order-1 md:order-2 cursor-pointer group relative" onclick="changePhoto(this)">
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 flex items-center gap-2 shadow-2xl transition-all group-hover:bg-[#9d81d4]/80">
+        <svg class="w-3 h-3 text-white opacity-80 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"></path>
+        </svg>
+        <span class="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white font-semibold">
+            Clic para ver más
+        </span>
+    </div>
+        
+        <div class="photo-stack relative h-80 w-full overflow-hidden rounded-2xl bg-black/30">
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-100 flex items-center justify-center p-2">
+                <img src="img/roadmap/20.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+            
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/21.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+                        <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/22.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                    <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/47.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="relative grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-40 z-10">
+    <div class="roadmap-dot top-1/2"></div>
+
+    <div class="photo-frame glass p-0 overflow-hidden cursor-pointer group relative" onclick="changePhoto(this)">
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 flex items-center gap-2 shadow-2xl transition-all group-hover:bg-[#9d81d4]/80">
+        <svg class="w-3 h-3 text-white opacity-80 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"></path>
+        </svg>
+        <span class="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white font-semibold">
+            Clic para ver más
+        </span>
+    </div>
+        
+        <div class="photo-stack relative h-80 w-full overflow-hidden rounded-2xl bg-black/30">
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-100 flex items-center justify-center p-2">
+                <img src="img/roadmap/39.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+            
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/40.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                        <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/41.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                    <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/42.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center md:text-left md:pl-12">
+        <span class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest">Soyapango</span>
+        <h3 class="text-3xl font-serif mt-3 mb-4 italic">El día que nos reconciliamos</h3>
+        <p class="text-sm opacity-70 leading-relaxed font-light">
+            Ese día quedamos de vernos en el gym y yo la verdad estaba muy nervioso, sabía que anteriormente había metido la pata pero tambien sabía que no quería dejarlo ir porque en verdad lo quería a mi lado, así usted acepto ese día entrenamos y aunque al principio estuvimos callados esa confianza fluyó poco despues, ese mismo día me tocaba sacar mi carnet de la universidad y usted me acompañó y fue ahí donde pudimos hablar y resolver los conflictos que tuvimos en el pasado y fue cuando entre en razón de que quería que lo mio con usted fuera diferente, quería que fuera más profundo y especial
+        </p>
+    </div>
+</div>
+
+<div class="relative grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-40 z-10">
+    <div class="roadmap-dot top-1/2"></div>
+
+    <div class="text-center md:text-right md:pr-12 order-2 md:order-1">
+        <span class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest">San Salvador</span>
+        <h3 class="text-3xl font-serif mt-3 mb-4 italic">Probando lugares nuevos de comida</h3>
+        <p class="text-sm opacity-70 leading-relaxed font-light">
+La segunda cita que me acepto para ir a un lugar nuevo de comida, nos toco compartir el sub pero estuvo riquisimo aunque lo mejor de todo eso fue su compañia, hablamos y le platique más acerca de mi trabajo a lo que usted se mostró muy interesado, recuerdo que esa día me recogío en metro y yo tuve que irme al baño a cambiarme porque venía de entregar equipos en un instituo de Ilobasco y me sentía sucio, asi que fui a cambiarme de ropa porque siempre quería sentirme bonito a su lado
+        </p>
+    </div>
+
+    <div class="photo-frame glass p-0 overflow-hidden order-1 md:order-2 cursor-pointer group relative" onclick="changePhoto(this)">
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 flex items-center gap-2 shadow-2xl transition-all group-hover:bg-[#9d81d4]/80">
+        <svg class="w-3 h-3 text-white opacity-80 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"></path>
+        </svg>
+        <span class="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white font-semibold">
+            Clic para ver más
+        </span>
+    </div>
+        
+        <div class="photo-stack relative h-80 w-full overflow-hidden rounded-2xl bg-black/30">
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-100 flex items-center justify-center p-2">
+                <img src="img/roadmap/23.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+            
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/26.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                        <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/24.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                    <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/38.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                    <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/25.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="relative grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-40 z-10">
+    <div class="roadmap-dot top-1/2"></div>
+
+    <div class="photo-frame glass p-0 overflow-hidden cursor-pointer group relative" onclick="changePhoto(this)">
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 flex items-center gap-2 shadow-2xl transition-all group-hover:bg-[#9d81d4]/80">
+        <svg class="w-3 h-3 text-white opacity-80 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"></path>
+        </svg>
+        <span class="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white font-semibold">
+            Clic para ver más
+        </span>
+    </div>
+        
+        <div class="photo-stack relative h-80 w-full overflow-hidden rounded-2xl bg-black/30">
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-100 flex items-center justify-center p-2">
+                <img src="img/roadmap/27.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+            
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/28.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+                        <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/29.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                    <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/30.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                                <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/31.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                                <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/32.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                                <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/33.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                                <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/34.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                                <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/35.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center md:text-left md:pl-12">
+        <span class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest">Hotel Intercontinental, San Salvador</span>
+        <h3 class="text-3xl font-serif mt-3 mb-4 italic">Nuestra segunda noche juntos </h3>
+        <p class="text-sm opacity-70 leading-relaxed font-light">
+            La verdad esta fue una de las mejores experiencias que he podido pasar a su lado, siempre recordaba que me decía que tenia una reservación en el hotel intercontinental pero la verdad es que si aun nos hubiera tocado dormir en su carro para mi hubiera sido genial pero cuando de sorpresa me llevo al hotel me sentí muy especial, muy independiente de todo lo que hicimos esa tarde lo cual me encanto mucho, disfrute mucho el poder compartir con usted tan de cerca nos conocimos mejor como somos durmiendo en la cama 😂 salimos por café a la gasolinera, vimos gente de su trabajo en la calle jajaja vimos otro capitulo de Sabrina y escuchamos muuuuucha muuuuusica, uno de los mejores días de mi vida
+        </p>
+    </div>
+</div>
+
+<div class="relative grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-40 z-10">
+    <div class="roadmap-dot top-1/2"></div>
+
+    <div class="text-center md:text-right md:pr-12 order-2 md:order-1">
+        <span class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest">San Salvador</span>
+        <h3 class="text-3xl font-serif mt-3 mb-4 italic">Puebliando por el mercado San Miguelito</h3>
+        <p class="text-sm opacity-70 leading-relaxed font-light">
+            Como olvidar este día, explorando lugares donde ir a comer o pasarla bien fue su idea ir al nuevo mercado y la verdad era primera vez que yo iba a ese lugar y me gusto mucho aunque debo admitir que me daba mucho miedo lo alto de los pisos y me dio mas miedo aun cuando usted se reclino sobre la baranda del ultimo nivel para las fotos, en verdad me proecupe mucho y queria que se alejara rapido, esa misma noche usted me invito a Pupusas y por primera vez comí pupusas de camrarón, pasamos por el lugar donde estuvimos la primera vez cuando el carro se quedo sin bateria e incluso pasamos por una iglesia de la cual usted me recomendo una serie de netflix acerca de eso
+        </p>
+    </div>
+
+    <div class="photo-frame glass p-0 overflow-hidden order-1 md:order-2 cursor-pointer group relative" onclick="changePhoto(this)">
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 flex items-center gap-2 shadow-2xl transition-all group-hover:bg-[#9d81d4]/80">
+        <svg class="w-3 h-3 text-white opacity-80 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"></path>
+        </svg>
+        <span class="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white font-semibold">
+            Clic para ver más
+        </span>
+    </div>
+        
+        <div class="photo-stack relative h-80 w-full overflow-hidden rounded-2xl bg-black/30">
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-100 flex items-center justify-center p-2">
+                <img src="img/roadmap/44.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+            
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/45.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+                        <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/48.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                    <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/49.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                    <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/50.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                                <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/51.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                                <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/52.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                                <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/54.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                                <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/53.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                                            <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/46.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                                <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/55.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="relative grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-40 z-10">
+    <div class="roadmap-dot top-1/2"></div>
+
+    <div class="photo-frame glass p-0 overflow-hidden cursor-pointer group relative" onclick="changePhoto(this)">
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 flex items-center gap-2 shadow-2xl transition-all group-hover:bg-[#9d81d4]/80">
+        <svg class="w-3 h-3 text-white opacity-80 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"></path>
+        </svg>
+        <span class="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white font-semibold">
+            Clic para ver más
+        </span>
+    </div>
+        
+        <div class="photo-stack relative h-80 w-full overflow-hidden rounded-2xl bg-black/30">
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-100 flex items-center justify-center p-2">
+                <img src="img/roadmap/57.jpg" class="w-full h-full object-contain rounded-xl">
+            </div>
+            
+            <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/58.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                        <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/69.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                    <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/68.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                                <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/59.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                                <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/60.JPG" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                                <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/61.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                                <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/62.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                                <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/63.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                                            <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/64.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                                            <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/65.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                                            <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/66.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+                                                            <div class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2">
+                <img src="img/roadmap/67.jpeg" class="w-full h-full object-contain rounded-xl">
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center md:text-left md:pl-12">
+        <span class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest">San Salvador</span>
+        <h3 class="text-3xl font-serif mt-3 mb-4 italic">El día de mi cumpleaños</h3>
+        <p class="text-sm opacity-70 leading-relaxed font-light">
+            Fue maravillos, simplemente maravilloso 🥺🥹❤️ pasar a su lado un día despues de mi cumple me hizo recordar cuando pase a su lado un dia antes de su cumple, me sentí tan especial y agradecido por ese enorme detalle de pasar conmigo ese día, talvez no lo crea pero ese regalo fue el unico que recibí y me siento tan feliz de que halla sido suyo, aunque no tomamos fotos nuestras ese día tengo el recuerdo y las imagenes tan presentes conmigo, recuerdo que tambien le lleve unos obsequios aunqeu simbolicos pero con mucho amor y cariño, me encantó acompañarlo a hacer sus compras en pricesmart y de regrese venir cantando nuestras canciones favoritas como es de constumbre. Otro de los regalos que mas amé de su parte fue la pulserita que me regalo, la presumia en todas partes recuerdo esa vez que en su carro me tomo de la mano y la puso en mi 💖
+        </p>
+    </div>
+</div>
+
+
+<script>
+function changePhoto(container) {
+    // Buscamos el div que contiene las imágenes (photo-stack) dentro de este contenedor específico
+    const stack = container.querySelector('.photo-stack');
+    // Obtenemos todos los divs que envuelven a las imágenes
+    const photos = stack.children;
+    
+    let activeIndex = -1;
+
+    // 1. Buscamos cuál es la foto que tiene la clase opacity-100 actualmente
+    for (let i = 0; i < photos.length; i++) {
+        if (photos[i].classList.contains('opacity-100')) {
+            activeIndex = i;
+            break;
+        }
+    }
+
+    // 2. Si encontramos la activa, procedemos al cambio
+    if (activeIndex !== -1) {
+        // Quitamos la visibilidad a la actual
+        photos[activeIndex].classList.remove('opacity-100');
+        photos[activeIndex].classList.add('opacity-0');
+
+        // 3. Calculamos el índice de la siguiente foto
+        const nextIndex = (activeIndex + 1) % photos.length;
+
+        // 4. Mostramos la siguiente foto
+        photos[nextIndex].classList.remove('opacity-0');
+        photos[nextIndex].classList.add('opacity-100');
+    }
+}
+</script>
+<div class="relative grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-20 z-10">
+    <div class="roadmap-dot top-1/2"></div>
+
+    <div class="text-center md:text-right md:pr-12 order-2 md:order-1 animate__animated animate__fadeInLeft">
+        <span class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest">El Futuro</span>
+        <h3 class="text-3xl font-serif mt-3 mb-4 italic">Un guiño al destino</h3>
+        <p class="text-sm opacity-70 leading-relaxed font-light italic">
+            Este espacio está reservado para lo que el destino nos tiene guardado. Una segunda oportunidad.
+        </p>
+    </div>
+
+    <div class="photo-frame mystery-box h-80 flex items-center justify-center group order-1 md:order-2 relative cursor-help">
+        <span class="text-5xl opacity-20 group-hover:opacity-0 transition-opacity duration-300 absolute">?</span>
+        
+        <div class="absolute inset-0 flex items-center justify-center p-6 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/50 backdrop-blur-sm rounded-2xl">
+            <p class="text-sm md:text-base font-medium text-white leading-relaxed glow-text">
+                Me gustaría seguir construyendo aventuras contigo.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="relative z-10 max-w-2xl mx-auto mt-20 mb-32 text-center animate__animated animate__fadeIn">
+    <div class="glass p-10 md:p-14 rounded-[3rem] border-dashed border-[#9d81d4]/30 overflow-visible">
+        <p class="text-sm md:text-base opacity-60 font-light tracking-widest uppercase mb-6 px-4">
+            Este fue un recorrido por algunos de nuestros momentos juntos...
+        </p>
+        <h2 class="text-4xl md:text-6xl font-serif italic glow-text px-6 pb-2 leading-relaxed">
+            ¿Realmente fueron pocos?
+        </h2>
+        <div class="mt-10 flex justify-center gap-2 opacity-30">
+            <span class="w-2 h-2 rounded-full bg-[#9d81d4]"></span>
+            <span class="w-2 h-2 rounded-full bg-[#9d81d4]"></span>
+            <span class="w-2 h-2 rounded-full bg-[#9d81d4]"></span>
+        </div>
+    </div>
+</div>
+        </div>
+    </section>
+
+<section class="py-24 px-6 text-center">
+    <div class="max-w-5xl mx-auto mb-16 animate__animated animate__fadeIn">
+        <h2 class="text-3xl md:text-5xl font-serif italic mb-6 text-[#d8c5f5] glow-text">Mis diseños de IA</h2>
+        <p class="text-sm md:text-base opacity-70 font-light leading-relaxed max-w-2xl mx-auto italic px-4">
+            Estos diseños ya no te los pude mandar en su momento, pero representan cada uno de los planes que tenía en menter contigo a futuro. Son imagenes que podía visualizar cada noche al dormir.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5 max-w-6xl mx-auto">
+        
+        <div class="glass p-2 rounded-[2rem] md:row-span-2 photo-frame flex items-center justify-center relative overflow-hidden h-[500px] md:h-auto bg-black/20">
+            <img src="img/futuro/1.JPG" class="absolute inset-0 w-full h-full object-cover blur-xl opacity-30 scale-110">
+            <img src="img/futuro/1.JPG" class="relative z-10 max-w-full max-h-full object-contain rounded-[1.5rem] shadow-2xl">
+        </div>
+
+        <div class="glass p-2 rounded-[2rem] photo-frame h-64 md:h-80 flex items-center justify-center relative overflow-hidden bg-black/20">
+            <img src="img/futuro/2.PNG" class="absolute inset-0 w-full h-full object-cover blur-xl opacity-30 scale-110">
+            <img src="img/futuro/2.PNG" class="relative z-10 max-w-full max-h-full object-contain rounded-[1.5rem]">
+        </div>
+
+        <div class="glass p-2 rounded-[2rem] photo-frame h-64 md:h-80 flex items-center justify-center relative overflow-hidden bg-black/20">
+            <img src="img/futuro/3.PNG" class="absolute inset-0 w-full h-full object-cover blur-xl opacity-30 scale-110">
+            <img src="img/futuro/3.PNG" class="relative z-10 max-w-full max-h-full object-contain rounded-[1.5rem]">
+        </div>
+
+        <div class="glass p-2 rounded-[2rem] md:row-span-2 photo-frame flex items-center justify-center relative overflow-hidden h-[500px] md:h-auto bg-black/20">
+            <img src="img/futuro/4.PNG" class="absolute inset-0 w-full h-full object-cover blur-xl opacity-30 scale-110">
+            <img src="img/futuro/4.PNG" class="relative z-10 max-w-full max-h-full object-contain rounded-[1.5rem] shadow-2xl">
+        </div>
+
+        <div class="glass p-2 rounded-[2rem] photo-frame h-64 md:h-80 flex items-center justify-center relative overflow-hidden bg-black/20">
+            <img src="img/futuro/5.PNG" class="absolute inset-0 w-full h-full object-cover blur-xl opacity-30 scale-110">
+            <img src="img/futuro/5.PNG" class="relative z-10 max-w-full max-h-full object-contain rounded-[1.5rem]">
+        </div>
+
+        <div class="glass p-2 rounded-[2rem] photo-frame h-64 md:h-80 flex items-center justify-center relative overflow-hidden bg-black/20">
+            <img src="img/futuro/6.PNG" class="absolute inset-0 w-full h-full object-cover blur-xl opacity-30 scale-110">
+            <img src="img/futuro/6.PNG" class="relative z-10 max-w-full max-h-full object-contain rounded-[1.5rem]">
+        </div>
+
+        <div class="glass p-2 rounded-[2rem] md:col-span-2 photo-frame h-64 md:h-80 flex items-center justify-center relative overflow-hidden bg-black/20">
+            <img src="img/futuro/7.PNG" class="absolute inset-0 w-full h-full object-cover blur-xl opacity-30 scale-110">
+            <img src="img/futuro/7.PNG" class="relative z-10 max-w-full max-h-full object-contain rounded-[1.5rem] shadow-lg">
+        </div>
+
+        <div class="glass p-2 rounded-[2rem] md:col-span-2 photo-frame h-64 md:h-80 flex items-center justify-center relative overflow-hidden bg-black/20">
+            <img src="img/futuro/8.jpeg" class="absolute inset-0 w-full h-full object-cover blur-xl opacity-30 scale-110">
+            <img src="img/futuro/8.jpeg" class="relative z-10 max-w-full max-h-full object-contain rounded-[1.5rem] shadow-lg">
+        </div>
+    </div>
+</section>
+<section class="py-24 px-6 glass relative overflow-hidden">
+    <div class="relative z-10">
+        <h2 class="text-center font-serif text-3xl md:text-5xl italic mb-20 text-[#d8c5f5] glow-text">Nuestras cantantes favoritas</h2>
+        
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-around gap-16 md:gap-12">
+            
+            <div class="text-center group flex-1 w-full max-w-[350px]">
+                <div class="glass p-2 rounded-[2.5rem] border-2 border-[#9d81d4]/50 overflow-hidden mb-6 photo-frame relative flex items-center justify-center h-[500px] bg-black/40 shadow-[0_0_40px_rgba(157,129,212,0.2)] transition-all duration-700 group-hover:scale-[1.02] group-hover:shadow-[0_0_60px_rgba(157,129,212,0.5)] group-hover:border-[#9d81d4]">
+                    <img src="img/cantantesfav/ari.PNG" class="absolute inset-0 w-full h-full object-cover blur-2xl opacity-20 scale-110">
+                    <img src="img/cantantesfav/ari.PNG" class="relative z-10 max-w-full max-h-full object-contain rounded-2xl">
+                </div>
+                <p class="font-serif italic text-2xl mt-4">Ariana Grande</p>
+                <p class="text-[11px] tracking-[0.4em] opacity-50 uppercase text-[#9d81d4] font-bold">Mi Favorita</p>
+            </div>
+
+            <div class="text-5xl font-serif opacity-20 my-8 md:my-0 flex items-center justify-center">
+                <span class="glow-text">&</span>
+            </div>
+
+            <div class="text-center group flex-1 w-full max-w-[350px]">
+                <div class="glass p-2 rounded-[2.5rem] border-2 border-white/10 overflow-hidden mb-6 photo-frame relative flex items-center justify-center h-[500px] bg-black/40 shadow-[0_0_40px_rgba(255,255,255,0.05)] transition-all duration-700 group-hover:scale-[1.02] group-hover:shadow-[0_0_60px_rgba(255,255,255,0.2)] group-hover:border-white/40">
+                    <img src="img/cantantesfav/riri.PNG" class="absolute inset-0 w-full h-full object-cover blur-2xl opacity-20 scale-110">
+                    <img src="img/cantantesfav/riri.PNG" class="relative z-10 max-w-full max-h-full object-contain rounded-2xl ">
+                </div>
+                <p class="font-serif italic text-2xl mt-4">Rihanna</p>
+                <p class="text-[11px] tracking-[0.4em] opacity-50 uppercase text-white/70 font-bold">Tu Favorita</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+    <section class="py-24 px-6">
+        <h2 class="text-center font-serif text-3xl italic mb-16 text-[#d8c5f5]">Nuestras historias favoritas</h2>
+        <div class="series-container max-w-5xl mx-auto">
+            <div class="series-card glass p-2 rounded-2xl w-48 transition-all">
+                <img src="img/seriesfav/1.jpg" class="h-64 w-full object-cover rounded-xl mb-2">
+                <p class="text-center text-[10px] tracking-widest opacity-60">Wicked For Good</p>
+            </div>
+            <div class="series-card glass p-2 rounded-2xl w-48 transition-all">
+                <img src="img/seriesfav/2.jpg" class="h-64 w-full object-cover rounded-xl mb-2">
+                <p class="text-center text-[10px] tracking-widest opacity-60">Stranger Things</p>
+            </div>
+            <div class="series-card glass p-2 rounded-2xl w-48 transition-all">
+                <img src="img/seriesfav/3.jpg" class="h-64 w-full object-cover rounded-xl mb-2">
+                <p class="text-center text-[10px] tracking-widest opacity-60">Sabrina</p>
+            </div>
+            <div class="series-card glass p-2 rounded-2xl w-48 transition-all">
+                <img src="img/seriesfav/4.jpg" class="h-64 w-full object-cover rounded-xl mb-2">
+                <p class="text-center text-[10px] tracking-widest opacity-60">Harry Potter</p>
+            </div>
+        </div>
+    </section>
+
+<section class="py-24 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl font-serif italic mb-10 text-white glow-text">Nuestra banda sonora</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="glass p-4 rounded-[2rem] shadow-2xl overflow-hidden border border-white/5 transition-transform hover:scale-[1.02]">
+                <iframe 
+                    style="border-radius:12px" 
+                    src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBMmF?utm_source=generator&theme=0" 
+                    width="100%" 
+                    height="352" 
+                    frameBorder="0" 
+                    allowfullscreen="" 
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                    loading="lazy">
+                </iframe>
+            </div>
+
+            <div class="glass p-4 rounded-[2rem] shadow-2xl border-[#9d81d4]/30 border overflow-hidden transition-transform hover:scale-[1.02]">
+                <iframe 
+                    style="border-radius:12px" 
+                    src="https://open.spotify.com/embed/playlist/TU_OTRO_ID_AQUI?utm_source=generator&theme=0" 
+                    width="100%" 
+                    height="352" 
+                    frameBorder="0" 
+                    allowfullscreen="" 
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <footer class="py-32 px-6 text-center">
+        <p class="text-2xl font-serif italic leading-relaxed text-white/90">"Ya nos conocemos. Ya sabemos quiénes somos y cómo brillamos juntos."</p>
+        <p class="mt-12 text-[#9d81d4] font-bold tracking-[0.5em] text-sm uppercase">R & M • 2026</p>
+    </footer>
+
+</body>
+</html>
