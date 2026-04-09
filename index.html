@@ -233,9 +233,37 @@
         filter: grayscale(0) blur(0);
         border-color: var(--accent-purple);
       }
+
+      @keyframes scrollInfinite {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .carousel-track {
+    display: flex;
+    width: max-content;
+    animation: scrollInfinite 30s linear infinite; /* 30s para que no vaya tan rápido */
+  }
+
+  .carousel-track img {
+    height: 350px; /* Tamaño más grande y presencial */
+    width: auto;
+    object-fit: cover;
+    margin-right: 15px; /* Espacio entre fotos */
+    border-radius: 8px; /* Bordes sutiles, no exagerados */
+  }
+
+  /* Evita que se vea gris o raro el contenedor */
+  #carrusel-section {
+    background: transparent !important;
+  }
+
     </style>
   </head>
   <body>
+      <audio id="audio-inicio" class="section-audio" loop>
+    <source src="media/Ed Sheeran - Photograph (Official Music Video).mp3" type="audio/mpeg">
+  </audio>
     <section
       class="relative h-screen flex flex-col items-center justify-center overflow-hidden"
     >
@@ -310,7 +338,7 @@
           <div
             class="glass-dark p-6 rounded-tr-[2rem] rounded-br-[2rem] rounded-bl-[2rem] border-l-4 border-green-400 max-w-lg shadow-xl"
           >
-            <audio controls class="custom-audio-player w-full mb-4">
+            <audio controls class="custom-audio-player w-full mb-4 nota-voz">
               <source src="media/miamorsito.mp3" type="audio/mpeg" />
             </audio>
             <p class="text-sm italic opacity-80 leading-relaxed font-light">
@@ -353,10 +381,10 @@
               quitándome la pena por fin..."
             </p>
             <div class="space-y-4">
-              <audio controls class="custom-audio-player w-full">
+              <audio controls class="custom-audio-player w-full mb-4 nota-voz">
                 <source src="media/rodri1.mp3" type="audio/mpeg" />
               </audio>
-              <audio controls class="custom-audio-player w-full">
+              <audio controls class="custom-audio-player w-full mb-4 nota-voz">
                 <source src="media/rodri2.mp3" type="audio/mpeg" />
               </audio>
             </div>
@@ -365,25 +393,36 @@
       </div>
     </section>
 
-    <section class="py-20 carousel-container">
-      <h2 class="text-center font-serif text-3xl italic mb-12">
-        Nuestros momentos juntos ✨♥️
-      </h2>
-      <div class="carousel-track">
-        <img src="img/roadmap/34.JPG" /><img src="img/roadmap/33.JPG" />
-        <img src="img/roadmap/29.JPG" />
-        <img src="img/carrusel/1.JPG" /><img src="img/carrusel/7.JPG" /><img
-          src="img/carrusel/3.JPG"
-        /><img src="img/carrusel/4.JPG" /><img src="img/carrusel/5.JPG" /><img
-          src="img/carrusel/6.jpg"
-        />
-        <img src="img/carrusel/1.JPG" /><img src="img/carrusel/7.JPG" /><img
-          src="img/carrusel/3.JPG"
-        /><img src="img/carrusel/4.JPG" /><img src="img/carrusel/5.JPG" /><img
-          src="img/carrusel/6.jpg"   
-        />
-      </div>
-    </section>
+<section id="carrusel-section" class="py-10 overflow-hidden">
+  <h2 class="text-center font-serif text-3xl italic mb-10">
+    Nuestros momentos juntos ✨♥️
+  </h2>
+
+
+
+  <div class="relative w-full">
+    <div class="carousel-track">
+      <img src="img/roadmap/34.JPG" alt="foto" />
+      <img src="img/roadmap/33.JPG" alt="foto" />
+      <img src="img/roadmap/29.JPG" alt="foto" />
+      <img src="img/carrusel/1.JPG" alt="foto" />
+      <img src="img/carrusel/7.JPG" alt="foto" />
+      <img src="img/carrusel/3.JPG" alt="foto" />
+      <img src="img/carrusel/4.JPG" alt="foto" />
+      <img src="img/carrusel/5.JPG" alt="foto" />
+      <img src="img/carrusel/6.jpg" alt="foto" />
+      <img src="img/roadmap/34.JPG" alt="foto" />
+      <img src="img/roadmap/33.JPG" alt="foto" />
+      <img src="img/roadmap/29.JPG" alt="foto" />
+      <img src="img/carrusel/1.JPG" alt="foto" />
+      <img src="img/carrusel/7.JPG" alt="foto" />
+      <img src="img/carrusel/3.JPG" alt="foto" />
+      <img src="img/carrusel/4.JPG" alt="foto" />
+      <img src="img/carrusel/5.JPG" alt="foto" />
+      <img src="img/carrusel/6.jpg" alt="foto" />
+    </div>
+  </div>
+</section>
 
     <section class="py-20 px-6 text-center">
       <div
@@ -401,7 +440,10 @@
       </div>
     </section>
 
-    <section class="relative py-20 px-6">
+    <section id="roadmap-section" class="relative py-20 px-6">
+      <audio class="section-audio" loop>
+    <source src="media/Ariana Grande - pov (official audio).mp3" type="audio/mpeg">
+  </audio>
       <div class="max-w-6xl mx-auto relative">
         <div class="roadmap-line top-0 bottom-0"></div>
 
@@ -2206,5 +2248,82 @@
         </p>
       </div>
     </footer>
+<script>
+  const musicInicio = document.getElementById('audio-inicio');
+  const musicRoadmap = document.querySelector('#roadmap-section .section-audio');
+  const notasVoz = document.querySelectorAll('.nota-voz');
+  const carruselSection = document.getElementById('carrusel-section');
+  const roadmapSection = document.getElementById('roadmap-section');
+
+  // Función para manejar el Ducking (Bajar volumen música)
+  notasVoz.forEach(nota => {
+    nota.onplay = () => {
+      // Bajamos el volumen de la música de fondo suavemente
+      musicInicio.volume = 0.1; 
+    };
+    nota.onpause = () => {
+      // Al pausar o terminar, vuelve a subir (siempre que estemos en zona)
+      handleScrollAudio(); 
+    };
+    nota.onended = () => {
+      musicInicio.volume = 0.6; // Valor promedio
+    };
+  });
+
+  const handleScrollAudio = () => {
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const roadmapRect = roadmapSection.getBoundingClientRect();
+
+    // 1. LÓGICA PARA MÚSICA DE INICIO (Ed Sheeran)
+    // Queremos que suene desde el pixel 0 hasta el final del carrusel
+    const carruselRect = carruselSection.getBoundingClientRect();
+    
+    if (carruselRect.bottom > 0 && roadmapRect.top > windowHeight / 2) {
+      if (musicInicio.paused) musicInicio.play().catch(() => {});
+      
+      // Si hay una nota de voz sonando, no subimos el volumen aquí
+      const notaSonando = Array.from(notasVoz).some(n => !n.paused);
+      if (!notaSonando) {
+        // Fade out solo cuando nos acercamos al Roadmap
+        let vol = 1;
+        if (roadmapRect.top < windowHeight) {
+          vol = roadmapRect.top / windowHeight;
+        }
+        musicInicio.volume = Math.max(0, Math.min(0.7, vol)); // Tope de 0.7 para que no sature
+      }
+    } else {
+      musicInicio.pause();
+    }
+
+    // 2. LÓGICA PARA ROADMAP (Ariana Grande)
+    if (roadmapRect.top < windowHeight && roadmapRect.bottom > 0) {
+      if (musicRoadmap.paused) musicRoadmap.play().catch(() => {});
+      
+      let vol = 0;
+      if (roadmapRect.top <= 0 && roadmapRect.bottom >= windowHeight) {
+        vol = 1; // Estamos dentro
+      } else {
+        // Fade in/out en los bordes
+        const visibleHeight = Math.min(roadmapRect.bottom, windowHeight) - Math.max(roadmapRect.top, 0);
+        vol = visibleHeight / windowHeight;
+      }
+      musicRoadmap.volume = Math.pow(vol, 2);
+    } else {
+      musicRoadmap.pause();
+    }
+  };
+
+  // Activar con la primera interacción
+  const unlockAudio = () => {
+    handleScrollAudio();
+    document.removeEventListener('click', unlockAudio);
+    document.removeEventListener('scroll', unlockAudio);
+  };
+
+  window.addEventListener('scroll', handleScrollAudio);
+  document.addEventListener('click', unlockAudio);
+  document.addEventListener('scroll', unlockAudio, { once: true });
+</script>
   </body>
 </html>
