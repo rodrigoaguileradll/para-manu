@@ -253,9 +253,41 @@
     border-radius: 8px; /* Bordes sutiles, no exagerados */
   }
 
+  /* Colores Wicked con Glow */
+  .text-pink-wicked {
+    color: #f472b6;
+    text-shadow: 0 0 15px rgba(244, 114, 182, 0.4);
+  }
+  .text-green-wicked {
+    color: #4ade80;
+    text-shadow: 0 0 15px rgba(74, 222, 128, 0.5);
+  }
+  
+  /* Suavizado para el cambio de texto */
+  #typing-container {
+    opacity: 0;
+  }
+
   /* Evita que se vea gris o raro el contenedor */
   #carrusel-section {
     background: transparent !important;
+  }
+
+  #typing-container {
+    opacity: 0;
+    /* Esto evita que el texto se vea muy pequeño */
+    text-wrap: balance; 
+  }
+
+  .text-pink-wicked {
+    color: #f472b6;
+    /* Sombra de luz para que resalte sobre el morado */
+    text-shadow: 0 0 20px rgba(244, 114, 182, 0.6);
+  }
+
+  .text-green-wicked {
+    color: #4ade80;
+    text-shadow: 0 0 20px rgba(74, 222, 128, 0.7);
   }
 
     </style>
@@ -1804,7 +1836,10 @@
       </div>
     </section>
 
-    <section class="py-24 px-6 text-center">
+    <section id="ia-section" class="py-24 px-6 text-center">
+      <audio class="section-audio" loop>
+    <source src="media/RAYE - WHERE IS MY HUSBAND! (Official Music Video).mp3" type="audio/mpeg">
+  </audio>
       <div class="max-w-5xl mx-auto mb-16 animate__animated animate__fadeIn">
         <h2
           class="text-3xl md:text-5xl font-serif italic mb-6 text-[#d8c5f5] glow-text"
@@ -1948,78 +1983,51 @@
         </div>
       </div>
     </section>
-    <section class="py-24 px-6 flex flex-col items-center justify-center">
-      <div
-        class="max-w-2xl mx-auto text-center animate__animated animate__fadeIn"
-      >
-        <h2
-          class="text-3xl md:text-5xl font-serif italic mb-8 text-[#d8c5f5] glow-text"
-        >
-          Mi video favorito de ti
-        </h2>
 
-        <div
-          class="glass p-3 rounded-[3rem] border border-white/10 shadow-2xl relative overflow-hidden max-w-[320px] mx-auto photo-frame"
-        >
-          <video
-            controls
-            class="w-full h-auto rounded-[2.5rem] shadow-inner shadow-black/50"
-            poster="img/roadmap/44.JPG"
-          >
-            <source src="media/mipapuchi.mp4" type="video/mp4" />
-            Tu navegador no soporta videos.
-          </video>
-        </div>
+<div class="bloque-con-audio">
+  <audio class="section-audio" loop>
+    <source src="media/A New Good Starting.mp3" type="audio/mpeg">
+  </audio>
 
-        <div class="mt-8 px-4">
-          <p
-            class="text-sm md:text-base opacity-75 leading-relaxed font-light italic"
-          >
-            Recuerdo cuando estabamos probando filtros y sonidos en tiktok y
-            curiosamente salió este video, es de esas casualidades hermosas
-            porque tanto la foto como el audio fueron perfectos, podría ver este
-            video una y otra vez y no me cansaría de verlo
-          </p>
-          <div class="mt-4 flex justify-center opacity-20">
-            <span class="text-xs tracking-[0.5em] uppercase"
-              >Momento Guardado en mi ♥️</span
-            >
-          </div>
+  <section class="py-24 px-6 flex flex-col items-center justify-center">
+    <div class="max-w-2xl mx-auto text-center animate__animated animate__fadeIn">
+      <h2 class="text-3xl md:text-5xl font-serif italic mb-8 text-[#d8c5f5] glow-text">
+        Mi video favorito de ti
+      </h2>
+      <div class="glass p-3 rounded-[3rem] border border-white/10 shadow-2xl relative overflow-hidden max-w-[320px] mx-auto photo-frame">
+        <video controls class="w-full h-auto rounded-[2.5rem] shadow-inner shadow-black/50" poster="img/roadmap/44.JPG">
+          <source src="media/mipapuchi.mp4" type="video/mp4" />
+          Tu navegador no soporta videos.
+        </video>
+      </div>
+      <div class="mt-8 px-4">
+        <p class="text-sm md:text-base opacity-75 leading-relaxed font-light italic">
+          Recuerdo cuando estábamos probando filtros y sonidos en tiktok... podría ver este video una y otra vez.
+        </p>
+        <div class="mt-4 flex justify-center opacity-20">
+          <span class="text-xs tracking-[0.5em] uppercase">Momento Guardado en mi ♥️</span>
         </div>
       </div>
-    </section>
-    <section class="py-24 px-6 text-center animate__animated animate__fadeIn">
-      <div class="max-w-3xl mx-auto">
-        <div class="mb-6 opacity-30">
-          <span class="text-3xl">🫧🧹</span>
-        </div>
+    </div>
+  </section>
 
-        <blockquote
-          class="text-2xl md:text-3xl font-serif italic text-white/95 leading-relaxed mb-6"
-        >
-          <span
-            class="text-pink-400 drop-shadow-[0_0_10px_rgba(244,114,182,0.4)]"
-            >"Yo a su lado sentía que podía volar...</span
-          >
-          y alguien me dijo:
-          <span
-            class="text-green-400 drop-shadow-[0_0_10px_rgba(74,222,128,0.5)]"
-            >todos se merecen una vez volar"</span
-          >.
-        </blockquote>
+<section class="py-24 px-6 text-center">
+    <div class="max-w-5xl mx-auto"> <div class="mb-10 opacity-40"><span class="text-4xl">🫧🧹</span></div>
+      
+      <div class="min-h-[200px] flex flex-col justify-center items-center">
+        <blockquote id="typing-container" class="text-3xl md:text-5xl font-serif italic text-white/95 leading-tight mb-8 transition-opacity duration-1000">
+          </blockquote>
 
-        <div class="flex flex-col items-center gap-2">
-          <cite
-            class="text-[10px] tracking-[0.4em] uppercase opacity-40 not-italic"
-          >
+        <div class="flex flex-col items-center gap-3">
+          <cite class="text-[11px] tracking-[0.5em] uppercase opacity-40 not-italic">
             — Defying Gravity (Wicked)
           </cite>
-          <div
-            class="w-12 h-[1px] bg-gradient-to-r from-pink-500/50 to-green-500/50 mt-2"
-          ></div>
+          <div class="w-16 h-[1px] bg-gradient-to-r from-pink-500/50 to-green-500/50 mt-2"></div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
+</div>
 
     <section class="py-24 px-6 glass relative overflow-hidden">
       <div class="relative z-10">
@@ -2255,105 +2263,117 @@
     </div>
 
 <script>
-  // Referencias a elementos
+  // 1. Referencias Globales
   const musicInicio = document.getElementById('audio-inicio');
-  const roadmapSection = document.getElementById('roadmap-section');
-  const musicRoadmap = document.querySelector('#roadmap-section .section-audio');
   const carruselSection = document.getElementById('carrusel-section');
-  const finalBlock = document.getElementById('bloque-musical');
-  const musicFinal = finalBlock ? finalBlock.querySelector('.section-audio') : null;
+  const roadmapSection = document.getElementById('roadmap-section');
   const notasVoz = document.querySelectorAll('.nota-voz');
+  
+  // Detectamos TODAS las secciones que tienen su propio audio interno
+  const musicSections = document.querySelectorAll('section:has(.section-audio), div:has(.section-audio)');
 
-  // 1. Manejo de Ducking (Bajar volumen de Ed Sheeran cuando hablas)
+  // 2. Ducking para notas de voz
   notasVoz.forEach(nota => {
-    nota.onplay = () => {
-      // Si suena una nota de voz, bajamos Ed Sheeran al 10%
-      if (musicInicio) musicInicio.volume = 0.1; 
-    };
-    nota.onpause = () => {
-      // Al pausar, restauramos el volumen según la posición del scroll
-      handleScrollAudio(); 
-    };
-    nota.onended = () => {
-      handleScrollAudio();
-    };
+    nota.onplay = () => { if (musicInicio) musicInicio.volume = 0.1; };
+    nota.onpause = () => { handleScrollAudio(); };
+    nota.onended = () => { handleScrollAudio(); };
   });
 
-  // 2. Función Principal de Control de Audio
   const handleScrollAudio = () => {
     const windowHeight = window.innerHeight;
     const windowCenter = windowHeight / 2;
 
-    // --- LÓGICA MÚSICA DE INICIO (Ed Sheeran) ---
+    // --- MÚSICA DE INICIO (Ed Sheeran) ---
     const carruselRect = carruselSection.getBoundingClientRect();
     const roadmapRect = roadmapSection.getBoundingClientRect();
 
-    // Suena desde el inicio hasta que el final del carrusel desaparece
     if (carruselRect.bottom > 0 && roadmapRect.top > windowCenter) {
       if (musicInicio.paused) musicInicio.play().catch(() => {});
-      
       const notaSonando = Array.from(notasVoz).some(n => !n.paused);
       if (!notaSonando) {
-        let vol = 0.7; // Volumen máximo deseado
-        // Si nos acercamos al Roadmap, empieza el Fade Out
-        if (roadmapRect.top < windowHeight) {
-          vol = (roadmapRect.top / windowHeight) * 0.7;
-        }
+        let vol = 0.7;
+        if (roadmapRect.top < windowHeight) vol = (roadmapRect.top / windowHeight) * 0.7;
         musicInicio.volume = Math.max(0, Math.min(0.7, vol));
       }
     } else {
-      if (!musicInicio.paused) musicInicio.pause();
+      if (musicInicio && !musicInicio.paused) musicInicio.pause();
     }
 
-    // --- LÓGICA ROADMAP (Ariana Grande - pov) ---
-    if (roadmapRect.top < windowHeight && roadmapRect.bottom > 0) {
-      if (musicRoadmap.paused) musicRoadmap.play().catch(() => {});
-      
-      let vol = 0;
-      if (roadmapRect.top <= 0 && roadmapRect.bottom >= windowHeight) {
-        vol = 1; // Estamos dentro de la sección larga
-      } else {
-        const visibleHeight = Math.min(roadmapRect.bottom, windowHeight) - Math.max(roadmapRect.top, 0);
-        vol = visibleHeight / windowHeight;
-      }
-      musicRoadmap.volume = Math.pow(vol, 2);
-    } else {
-      if (!musicRoadmap.paused) musicRoadmap.pause();
-    }
+    // --- CONTROL DE TODAS LAS DEMÁS SECCIONES CON MÚSICA ---
+    musicSections.forEach(container => {
+      const audio = container.querySelector('.section-audio');
+      if (!audio) return;
 
-    // --- LÓGICA BLOQUE FINAL (Canción de Cierre) ---
-    if (finalBlock && musicFinal) {
-      const rectFinal = finalBlock.getBoundingClientRect();
+      const rect = container.getBoundingClientRect();
       
-      if (rectFinal.top < windowHeight && rectFinal.bottom > 0) {
-        if (musicFinal.paused) musicFinal.play().catch(() => {});
+      // Si la sección es visible en pantalla
+      if (rect.top < windowHeight && rect.bottom > 0) {
+        if (audio.paused) audio.play().catch(() => {});
         
         let vol = 0;
-        // Fade in suave cuando el bloque final entra a la mitad de la pantalla
-        if (rectFinal.top <= windowCenter) {
-          vol = 0.8; 
+        // Si la sección es larga (como el Roadmap) o está centrada
+        if (rect.top <= 0 && rect.bottom >= windowHeight) {
+          vol = 1; 
         } else {
-          vol = (windowHeight - rectFinal.top) / windowCenter;
+          const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+          vol = visibleHeight / windowHeight;
         }
-        musicFinal.volume = Math.max(0, Math.min(0.8, vol));
+        audio.volume = Math.pow(vol, 2); // Fade suave
       } else {
-        if (!musicFinal.paused) musicFinal.pause();
+        if (!audio.paused) audio.pause();
       }
-    }
+    });
   };
 
-  // 3. Inicialización por interacción (Bypass de políticas de navegador)
+  // 3. Inicialización
   const unlockAudio = () => {
     handleScrollAudio();
-    // Una vez desbloqueado, removemos los listeners de inicio
     document.removeEventListener('click', unlockAudio);
     document.removeEventListener('touchstart', unlockAudio);
   };
 
-  // Listeners
   window.addEventListener('scroll', handleScrollAudio);
   document.addEventListener('click', unlockAudio);
-  document.addEventListener('touchstart', unlockAudio); // Para celulares
+  document.addEventListener('touchstart', unlockAudio);
+</script>
+<script>
+  const thoughts = [
+    {
+      html: '<span class="text-pink-wicked">"Yo a su lado sentía que podía volar...</span> y alguien me dijo:<br><span class="text-green-wicked">todos se merecen una vez volar"</span>.'
+    },
+    {
+      html: '<span class="text-pink-wicked">"Gracias a que te conocí </span><br>y <span class="text-green-wicked">he cambiado para bien"</span>.'
+    },
+    {
+      html: '"Usted es mi <span class="text-green-wicked">mejor casualidad</span>,<br><span class="text-pink-wicked">mi lugar favorito en el mundo"</span>.'
+    }
+  ];
+
+  let thoughtIndex = 0;
+  const container = document.getElementById('typing-container');
+
+  function updateThought() {
+    if (!container) return;
+
+    // Desvanecer (Fade Out)
+    container.style.opacity = 0;
+
+    setTimeout(() => {
+      // Cambiar contenido
+      container.innerHTML = thoughts[thoughtIndex].html;
+      // Aparecer (Fade In)
+      container.style.opacity = 1;
+
+      // Siguiente pensamiento
+      thoughtIndex = (thoughtIndex + 1) % thoughts.length;
+    }, 1000); // Espera 1s para que termine de desvanecerse
+  }
+
+  // Cambiar cada 6 segundos
+  setInterval(updateThought, 10000);
+  
+  // Iniciar al cargar (pequeño delay para el primer fade in)
+  setTimeout(updateThought, 500);
 </script>
   </body>
 </html>
