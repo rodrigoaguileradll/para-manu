@@ -2083,7 +2083,11 @@
       </div>
     </section>
 
-    <section class="py-24 px-6">
+    <div id="bloque-musical">
+      <audio class="section-audio" loop>
+    <source src="media/Alex Warren - Ordinary (Official Lyric Video).mp3" type="audio/mpeg">
+  </audio>
+      <section class="py-24 px-6">
       <h2 class="text-center font-serif text-3xl italic mb-16 text-[#d8c5f5]">
         Nuestras historias favoritas
       </h2>
@@ -2248,82 +2252,108 @@
         </p>
       </div>
     </footer>
-<script>
-  const musicInicio = document.getElementById('audio-inicio');
-  const musicRoadmap = document.querySelector('#roadmap-section .section-audio');
-  const notasVoz = document.querySelectorAll('.nota-voz');
-  const carruselSection = document.getElementById('carrusel-section');
-  const roadmapSection = document.getElementById('roadmap-section');
+    </div>
 
-  // Función para manejar el Ducking (Bajar volumen música)
+<script>
+  // Referencias a elementos
+  const musicInicio = document.getElementById('audio-inicio');
+  const roadmapSection = document.getElementById('roadmap-section');
+  const musicRoadmap = document.querySelector('#roadmap-section .section-audio');
+  const carruselSection = document.getElementById('carrusel-section');
+  const finalBlock = document.getElementById('bloque-musical');
+  const musicFinal = finalBlock ? finalBlock.querySelector('.section-audio') : null;
+  const notasVoz = document.querySelectorAll('.nota-voz');
+
+  // 1. Manejo de Ducking (Bajar volumen de Ed Sheeran cuando hablas)
   notasVoz.forEach(nota => {
     nota.onplay = () => {
-      // Bajamos el volumen de la música de fondo suavemente
-      musicInicio.volume = 0.1; 
+      // Si suena una nota de voz, bajamos Ed Sheeran al 10%
+      if (musicInicio) musicInicio.volume = 0.1; 
     };
     nota.onpause = () => {
-      // Al pausar o terminar, vuelve a subir (siempre que estemos en zona)
+      // Al pausar, restauramos el volumen según la posición del scroll
       handleScrollAudio(); 
     };
     nota.onended = () => {
-      musicInicio.volume = 0.6; // Valor promedio
+      handleScrollAudio();
     };
   });
 
+  // 2. Función Principal de Control de Audio
   const handleScrollAudio = () => {
-    const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
+    const windowCenter = windowHeight / 2;
+
+    // --- LÓGICA MÚSICA DE INICIO (Ed Sheeran) ---
+    const carruselRect = carruselSection.getBoundingClientRect();
     const roadmapRect = roadmapSection.getBoundingClientRect();
 
-    // 1. LÓGICA PARA MÚSICA DE INICIO (Ed Sheeran)
-    // Queremos que suene desde el pixel 0 hasta el final del carrusel
-    const carruselRect = carruselSection.getBoundingClientRect();
-    
-    if (carruselRect.bottom > 0 && roadmapRect.top > windowHeight / 2) {
+    // Suena desde el inicio hasta que el final del carrusel desaparece
+    if (carruselRect.bottom > 0 && roadmapRect.top > windowCenter) {
       if (musicInicio.paused) musicInicio.play().catch(() => {});
       
-      // Si hay una nota de voz sonando, no subimos el volumen aquí
       const notaSonando = Array.from(notasVoz).some(n => !n.paused);
       if (!notaSonando) {
-        // Fade out solo cuando nos acercamos al Roadmap
-        let vol = 1;
+        let vol = 0.7; // Volumen máximo deseado
+        // Si nos acercamos al Roadmap, empieza el Fade Out
         if (roadmapRect.top < windowHeight) {
-          vol = roadmapRect.top / windowHeight;
+          vol = (roadmapRect.top / windowHeight) * 0.7;
         }
-        musicInicio.volume = Math.max(0, Math.min(0.7, vol)); // Tope de 0.7 para que no sature
+        musicInicio.volume = Math.max(0, Math.min(0.7, vol));
       }
     } else {
-      musicInicio.pause();
+      if (!musicInicio.paused) musicInicio.pause();
     }
 
-    // 2. LÓGICA PARA ROADMAP (Ariana Grande)
+    // --- LÓGICA ROADMAP (Ariana Grande - pov) ---
     if (roadmapRect.top < windowHeight && roadmapRect.bottom > 0) {
       if (musicRoadmap.paused) musicRoadmap.play().catch(() => {});
       
       let vol = 0;
       if (roadmapRect.top <= 0 && roadmapRect.bottom >= windowHeight) {
-        vol = 1; // Estamos dentro
+        vol = 1; // Estamos dentro de la sección larga
       } else {
-        // Fade in/out en los bordes
         const visibleHeight = Math.min(roadmapRect.bottom, windowHeight) - Math.max(roadmapRect.top, 0);
         vol = visibleHeight / windowHeight;
       }
       musicRoadmap.volume = Math.pow(vol, 2);
     } else {
-      musicRoadmap.pause();
+      if (!musicRoadmap.paused) musicRoadmap.pause();
+    }
+
+    // --- LÓGICA BLOQUE FINAL (Canción de Cierre) ---
+    if (finalBlock && musicFinal) {
+      const rectFinal = finalBlock.getBoundingClientRect();
+      
+      if (rectFinal.top < windowHeight && rectFinal.bottom > 0) {
+        if (musicFinal.paused) musicFinal.play().catch(() => {});
+        
+        let vol = 0;
+        // Fade in suave cuando el bloque final entra a la mitad de la pantalla
+        if (rectFinal.top <= windowCenter) {
+          vol = 0.8; 
+        } else {
+          vol = (windowHeight - rectFinal.top) / windowCenter;
+        }
+        musicFinal.volume = Math.max(0, Math.min(0.8, vol));
+      } else {
+        if (!musicFinal.paused) musicFinal.pause();
+      }
     }
   };
 
-  // Activar con la primera interacción
+  // 3. Inicialización por interacción (Bypass de políticas de navegador)
   const unlockAudio = () => {
     handleScrollAudio();
+    // Una vez desbloqueado, removemos los listeners de inicio
     document.removeEventListener('click', unlockAudio);
-    document.removeEventListener('scroll', unlockAudio);
+    document.removeEventListener('touchstart', unlockAudio);
   };
 
+  // Listeners
   window.addEventListener('scroll', handleScrollAudio);
   document.addEventListener('click', unlockAudio);
-  document.addEventListener('scroll', unlockAudio, { once: true });
+  document.addEventListener('touchstart', unlockAudio); // Para celulares
 </script>
   </body>
 </html>
