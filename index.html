@@ -242,15 +242,15 @@
   .carousel-track {
     display: flex;
     width: max-content;
-    animation: scrollInfinite 30s linear infinite; /* 30s para que no vaya tan rápido */
+    animation: scrollInfinite 30s linear infinite; 
   }
 
   .carousel-track img {
-    height: 350px; /* Tamaño más grande y presencial */
+    height: 350px; 
     width: auto;
     object-fit: cover;
-    margin-right: 15px; /* Espacio entre fotos */
-    border-radius: 8px; /* Bordes sutiles, no exagerados */
+    margin-right: 15px; 
+    border-radius: 8px; 
   }
 
   /* Colores Wicked con Glow */
@@ -263,31 +263,51 @@
     text-shadow: 0 0 15px rgba(74, 222, 128, 0.5);
   }
   
-  /* Suavizado para el cambio de texto */
   #typing-container {
     opacity: 0;
   }
 
-  /* Evita que se vea gris o raro el contenedor */
   #carrusel-section {
     background: transparent !important;
   }
 
   #typing-container {
     opacity: 0;
-    /* Esto evita que el texto se vea muy pequeño */
     text-wrap: balance; 
   }
 
   .text-pink-wicked {
     color: #f472b6;
-    /* Sombra de luz para que resalte sobre el morado */
     text-shadow: 0 0 20px rgba(244, 114, 182, 0.6);
   }
 
   .text-green-wicked {
     color: #4ade80;
     text-shadow: 0 0 20px rgba(74, 222, 128, 0.7);
+  }
+
+  .music-card-premium {
+    @apply glass p-8 rounded-[3rem] border relative flex flex-col transition-all duration-500;
+  }
+  
+  .music-card-premium:hover {
+    @apply -translate-y-2 border-white/40 shadow-2xl;
+  }
+
+  .song-item {
+    @apply flex items-center gap-4 border-b border-white/5 pb-4 last:border-0;
+  }
+
+  .song-number {
+    @apply font-serif text-lg opacity-40 italic;
+  }
+
+  .song-item p {
+    @apply font-serif italic text-base md:text-lg text-white/90;
+  }
+
+  .music-card-premium .song-item:hover p {
+    @apply scale-105 origin-left transition-transform;
   }
 
     </style>
@@ -2051,34 +2071,74 @@
     <source src="media/Rihanna - Only Girl (In The World) .mp3" type="audio/mpeg">
   </audio>
 
-  <section class="py-24 px-6 glass relative overflow-hidden">
-    <div class="relative z-10">
-      <h2 class="text-center font-serif text-3xl md:text-5xl italic mb-20 text-[#d8c5f5] glow-text">
-        Nuestras cantantes favoritas
+  <section class="py-24 px-6 glass relative overflow-hidden border-y border-white/5">
+    
+    <div class="max-w-4xl mx-auto text-center mb-24 animate__animated animate__fadeIn">
+      <h2 class="text-4xl md:text-6xl font-serif italic text-[#d8c5f5] glow-text leading-tight">
+        Porque la música siempre ha sido parte de nosotros
       </h2>
+      <p class="mt-6 text-[10px] tracking-[0.6em] uppercase opacity-30">Estas canciones nos representan</p>
+    </div>
 
+    <div class="relative z-10 mb-32">
+      <h3 class="text-center font-serif text-2xl md:text-3xl italic mb-16 opacity-80">Nuestras artistas favoritas</h3>
       <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-around gap-16 md:gap-12">
-        <div class="text-center group flex-1 w-full max-w-[350px]">
-          <div class="glass p-2 rounded-[2.5rem] border-2 border-[#9d81d4]/50 overflow-hidden mb-6 photo-frame relative flex items-center justify-center h-[500px] bg-black/40 shadow-[0_0_40px_rgba(157,129,212,0.2)] transition-all duration-700 group-hover:scale-[1.02] group-hover:shadow-[0_0_60px_rgba(157,129,212,0.5)] group-hover:border-[#9d81d4]">
+        <div class="text-center group flex-1 w-full max-w-[320px]">
+          <div class="glass p-2 rounded-[2.5rem] border-2 border-[#9d81d4]/50 overflow-hidden mb-6 photo-frame relative flex items-center justify-center h-[450px] bg-black/40 shadow-[0_0_40px_rgba(157,129,212,0.2)] transition-all duration-700 group-hover:scale-[1.05]">
             <img src="img/cantantesfav/ari.PNG" class="absolute inset-0 w-full h-full object-cover blur-2xl opacity-20 scale-110" />
             <img src="img/cantantesfav/ari.PNG" class="relative z-10 max-w-full max-h-full object-contain rounded-2xl" />
           </div>
-          <p class="font-serif italic text-2xl mt-4">Ariana Grande</p>
-          <p class="text-[11px] tracking-[0.4em] opacity-50 uppercase text-[#9d81d4] font-bold">Mi Favorita</p>
+          <p class="font-serif italic text-xl mt-4">Ariana Grande</p>
+          <p class="text-[9px] tracking-[0.4em] opacity-50 uppercase text-[#9d81d4] font-bold">Mi Favorita</p>
         </div>
 
-        <div class="text-5xl font-serif opacity-20 my-8 md:my-0 flex items-center justify-center">
+        <div class="text-4xl font-serif opacity-20 my-8 md:my-0 flex items-center justify-center">
           <span class="glow-text">&</span>
         </div>
 
-        <div class="text-center group flex-1 w-full max-w-[350px]">
-          <div class="glass p-2 rounded-[2.5rem] border-2 border-white/10 overflow-hidden mb-6 photo-frame relative flex items-center justify-center h-[500px] bg-black/40 shadow-[0_0_40px_rgba(255,255,255,0.05)] transition-all duration-700 group-hover:scale-[1.02] group-hover:shadow-[0_0_60px_rgba(255,255,255,0.2)] group-hover:border-white/40">
+        <div class="text-center group flex-1 w-full max-w-[320px]">
+          <div class="glass p-2 rounded-[2.5rem] border-2 border-white/10 overflow-hidden mb-6 photo-frame relative flex items-center justify-center h-[450px] bg-black/40 shadow-[0_0_40px_rgba(255,255,255,0.05)] transition-all duration-700 group-hover:scale-[1.05]">
             <img src="img/cantantesfav/riri.PNG" class="absolute inset-0 w-full h-full object-cover blur-2xl opacity-20 scale-110" />
             <img src="img/cantantesfav/riri.PNG" class="relative z-10 max-w-full max-h-full object-contain rounded-2xl" />
           </div>
-          <p class="font-serif italic text-2xl mt-4">Rihanna</p>
-          <p class="text-[11px] tracking-[0.4em] opacity-50 uppercase text-white/70 font-bold">Tu Favorita</p>
+          <p class="font-serif italic text-xl mt-4">Rihanna</p>
+          <p class="text-[9px] tracking-[0.4em] opacity-50 uppercase text-white/70 font-bold">Tu Favorita</p>
         </div>
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto pb-10">
+      <h3 class="text-center font-serif text-2xl md:text-3xl italic mb-20 opacity-80">Nuestro Top 3</h3>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+        
+        <div class="music-card-premium border-pink-500/20 group">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-pink-500/20 px-4 py-1 rounded-full border border-pink-500/30 text-[9px] tracking-widest uppercase text-pink-300">Rodrigo's Choice</div>
+          <div class="space-y-6 pt-6">
+            <div class="song-item"><span class="song-number text-pink-400">01</span> <p>"No Tears Left To Cry"</p></div>
+            <div class="song-item"><span class="song-number text-pink-400">02</span> <p>"Into You"</p></div>
+            <div class="song-item"><span class="song-number text-pink-400">03</span> <p>"Save Me"</p></div>
+          </div>
+        </div>
+
+        <div class="music-card-premium border-white/20 scale-105 bg-gradient-to-br from-pink-500/10 via-purple-500/10 to-green-500/10 z-20 shadow-[0_0_50px_rgba(216,197,245,0.2)]">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-white/10 px-6 py-1 rounded-full border border-white/30 text-[10px] tracking-widest uppercase text-white font-bold">La Nuestra ✨</div>
+          <div class="h-full flex flex-col justify-center items-center text-center py-10">
+             <span class="text-4xl mb-6 animate-pulse">💿</span>
+             <p class="text-3xl font-serif italic text-white glow-text">"Chandelier"</p>
+             <p class="text-[10px] tracking-[0.4em] uppercase opacity-40 mt-6 italic">La que nos gusta a ambos</p>
+          </div>
+        </div>
+
+        <div class="music-card-premium border-green-500/20 group">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-green-500/20 px-4 py-1 rounded-full border border-green-500/30 text-[9px] tracking-widest uppercase text-green-300">Manu's Choice</div>
+          <div class="space-y-6 pt-6">
+            <div class="song-item"><span class="song-number text-green-400">01</span> <p>"Sonne"</p></div>
+            <div class="song-item"><span class="song-number text-green-400">02</span> <p>"The Reason"</p></div>
+            <div class="song-item"><span class="song-number text-green-400">03</span> <p>"Only Girl"</p></div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -2256,28 +2316,23 @@
     </div>
 
 <script>
-  // 1. Referencias Globales
   const musicInicio = document.getElementById('audio-inicio');
   const carruselSection = document.getElementById('carrusel-section');
   const roadmapSection = document.getElementById('roadmap-section');
   const notasVoz = document.querySelectorAll('.nota-voz');
   
-  // Detectamos todas las secciones o divs que tienen música de fondo
   const musicSections = document.querySelectorAll('section:has(.section-audio), div:has(.section-audio)');
 
-  // 2. Ducking para notas de voz (Mantiene Ed Sheeran bajito mientras hablas)
   notasVoz.forEach(nota => {
     nota.onplay = () => { if (musicInicio) musicInicio.volume = 0.1; };
     nota.onpause = () => { handleScrollAudio(); };
     nota.onended = () => { handleScrollAudio(); };
   });
 
-  // 3. Función Principal de Control de Audio
   const handleScrollAudio = () => {
     const windowHeight = window.innerHeight;
     const windowCenter = windowHeight / 2;
 
-    // --- MÚSICA DE INICIO (Ed Sheeran - Photograph) ---
     const carruselRect = carruselSection.getBoundingClientRect();
     const roadmapRect = roadmapSection.getBoundingClientRect();
 
@@ -2293,24 +2348,20 @@
       if (musicInicio && !musicInicio.paused) musicInicio.pause();
     }
 
-    // --- CONTROL DE SECCIONES (IA, Videos de TikTok, Pensamientos, Final) ---
     musicSections.forEach(container => {
       const audio = container.querySelector('.section-audio');
-      const videosInBlock = container.querySelectorAll('video'); // Buscamos TODOS los videos del bloque
+      const videosInBlock = container.querySelectorAll('video'); 
       if (!audio) return;
 
       const rect = container.getBoundingClientRect();
       
       if (rect.top < windowHeight && rect.bottom > 0) {
         
-        // Revisamos si alguno de los videos de esta sección se está reproduciendo
         const algunVideoSonando = Array.from(videosInBlock).some(v => !v.paused);
 
         if (algunVideoSonando) {
-          // Si hay video sonando, pausamos la música de fondo de esta sección
           if (!audio.paused) audio.pause(); 
         } else {
-          // Si no hay videos sonando, la música de fondo suena normal
           if (audio.paused) audio.play().catch(() => {});
           
           let vol = 0;
@@ -2320,16 +2371,14 @@
             const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
             vol = visibleHeight / windowHeight;
           }
-          audio.volume = Math.pow(vol, 2); // Efecto de fade suave
+          audio.volume = Math.pow(vol, 2); 
         }
 
-        // Configuramos los eventos para cada video del bloque
         videosInBlock.forEach(video => {
           video.onplay = () => { 
             audio.pause(); 
           }; 
           video.onpause = () => { 
-            // Solo resumimos el audio si NO queda ningún otro video sonando en el bloque
             const otroVideoSonando = Array.from(videosInBlock).some(v => !v.paused);
             if (!otroVideoSonando) {
               audio.play().catch(() => {}); 
@@ -2346,20 +2395,17 @@
         });
 
       } else {
-        // Si salimos de la sección por scroll, pausamos el audio
         if (!audio.paused) audio.pause();
       }
     });
   };
 
-  // 4. Inicialización (Bypass para políticas de reproducción de navegadores)
   const unlockAudio = () => {
     handleScrollAudio();
     document.removeEventListener('click', unlockAudio);
     document.removeEventListener('touchstart', unlockAudio);
   };
 
-  // Listeners
   window.addEventListener('scroll', handleScrollAudio);
   document.addEventListener('click', unlockAudio);
   document.addEventListener('touchstart', unlockAudio);
@@ -2387,16 +2433,13 @@
   function updateDeck() {
     if (!thoughtEl || !quoteEl) return;
 
-    // Fade Out de ambos
     thoughtEl.style.opacity = 0;
     quoteEl.style.opacity = 0;
 
     setTimeout(() => {
-      // Cambiar textos
       thoughtEl.innerHTML = deck[deckIndex].thought;
       quoteEl.querySelector('cite').innerText = deck[deckIndex].source;
 
-      // Fade In de ambos
       thoughtEl.style.opacity = 1;
       quoteEl.style.opacity = 1;
 
@@ -2404,9 +2447,8 @@
     }, 1000);
   }
 
-  // Ciclo de 7 segundos para dar tiempo de lectura
   setInterval(updateDeck, 7000);
-  setTimeout(updateDeck, 500); // Carga inicial
+  setTimeout(updateDeck, 500); 
 </script>
   </body>
 </html>
