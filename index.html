@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <!-- Google tag (gtag.js) -->
+        <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M46H9R940S"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -104,15 +104,33 @@
       }
 
       /* MARCOS CUADRADOS GRANDES */
-      .profile-card {
-        width: 140px;
-        height: 160px;
-        border-radius: 2rem;
-        border: 2px solid var(--accent-purple);
-        overflow: hidden;
-        box-shadow: 0 0 20px rgba(157, 129, 212, 0.4);
-      }
+/* Borra tu clase .profile-card vieja y pon esta */
+.profile-card {
+  width: 140px;
+  height: 160px;
+  border-radius: 2rem; /* Mantengo tu radio de borde */
+  border: 2px solid var(--accent-purple);
+  overflow: hidden;
+  
+  /* EL SECRETO: El resplandor (Glow) */
+  box-shadow: 0 0 15px rgba(157, 129, 212, 0.3);
+  
+  /* Fondo de cristal sutil */
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 
+  /* Transición suave para el hover */
+  transition: all 0.4s ease-out;
+  cursor: pointer;
+}
+
+/* Efecto al pasar el mouse (Hover) */
+.profile-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(157, 129, 212, 0.5); /* El glow se intensifica */
+  border-color: #fff; /* El borde se vuelve blanco */
+}
       /* INFINITE LOOP CAROUSEL */
       .carousel-container {
         overflow: hidden;
@@ -310,6 +328,21 @@
     @apply scale-105 origin-left transition-transform;
   }
 
+  /* Animación suave para el cúmulo final */
+.constellation-container div {
+  animation: float-stars 4s ease-in-out infinite;
+}
+
+@keyframes float-stars {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-5px) scale(1.1); }
+}
+
+/* Ajuste para el fondo final fucsia */
+section:last-of-type {
+  background: radial-gradient(circle at center, rgba(157, 129, 212, 0.15) 0%, transparent 70%);
+}
+
     </style>
   </head>
   <body>
@@ -446,11 +479,15 @@
     </section>
 
 <section id="carrusel-section" class="py-10 overflow-hidden">
-  <h2 class="text-center font-serif text-3xl italic mb-10">
-    Nuestros momentos juntos ✨♥️
-  </h2>
-
-
+  <div class="text-center mb-10">
+    <h2 class="font-serif text-3xl italic mb-3">
+      Nuestros momentos juntos ✨♥️
+    </h2>
+    <p class="text-[10px] tracking-[0.4em] uppercase opacity-50 font-light">
+      Guardamos este amor en fotografías
+    </p>
+    <div class="h-[1px] w-12 bg-white/20 mx-auto mt-6"></div>
+  </div>
 
   <div class="relative w-full">
     <div class="carousel-track">
@@ -463,16 +500,7 @@
       <img src="img/carrusel/4.JPG" alt="foto" />
       <img src="img/carrusel/5.JPG" alt="foto" />
       <img src="img/carrusel/6.jpg" alt="foto" />
-      <img src="img/roadmap/34.JPG" alt="foto" />
-      <img src="img/roadmap/33.JPG" alt="foto" />
-      <img src="img/roadmap/29.JPG" alt="foto" />
-      <img src="img/carrusel/1.JPG" alt="foto" />
-      <img src="img/carrusel/7.JPG" alt="foto" />
-      <img src="img/carrusel/3.JPG" alt="foto" />
-      <img src="img/carrusel/4.JPG" alt="foto" />
-      <img src="img/carrusel/5.JPG" alt="foto" />
-      <img src="img/carrusel/6.jpg" alt="foto" />
-    </div>
+      </div>
   </div>
 </section>
 
@@ -492,7 +520,7 @@
       </div>
     </section>
 
-    <section id="roadmap-section" class="relative py-20 px-6">
+    <section id="roadmap-section" class="relative py-20 px-6">ñ
       <audio class="section-audio" loop>
     <source src="media/Ariana Grande - pov (official audio).mp3" type="audio/mpeg">
   </audio>
@@ -508,6 +536,9 @@
               class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest"
               >Paseo Venecia</span
             >
+            <span class="text-[10px] text-white/50 uppercase tracking-[0.3em] font-medium block mt-1">
+        21 Noviembre, 2025
+    </span>
             <h3 class="text-3xl font-serif mt-3 mb-4 italic">
               Nuestra primera cita
             </h3>
@@ -639,6 +670,9 @@
               class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest"
               >Justo un día despues</span
             >
+                        <span class="text-[10px] text-white/50 uppercase tracking-[0.3em] font-medium block mt-1">
+        22 Noviembre, 2025
+    </span>
             <h3 class="text-3xl font-serif mt-3 mb-4 italic">
               El día de su cumpleaños
             </h3>
@@ -663,6 +697,9 @@
               class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest"
               >cine, airbnb, cita dental</span
             >
+                        <span class="text-[10px] text-white/50 uppercase tracking-[0.3em] font-medium block mt-1">
+        29 Noviembre, 2025
+    </span>
             <h3 class="text-3xl font-serif mt-3 mb-4 italic">
               Nuestra primera noche juntos
             </h3>
@@ -810,6 +847,14 @@
                   class="w-full h-full object-contain rounded-xl"
                 />
               </div>
+                            <div
+                class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2"
+              >
+                <img
+                  src="img/roadmap/72.jpeg"
+                  class="w-full h-full object-contain rounded-xl"
+                />
+              </div>
             </div>
           </div>
 
@@ -818,6 +863,9 @@
               class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest"
               >San Salvador, Biblioteca Nacional</span
             >
+                        <span class="text-[10px] text-white/50 uppercase tracking-[0.3em] font-medium block mt-1">
+        06 Diciembre, 2025
+    </span>
             <h3 class="text-3xl font-serif mt-3 mb-4 italic">
               Nuestra salida al centro de San Salvador
             </h3>
@@ -843,6 +891,9 @@
               class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest"
               >Volcan de San Salvador</span
             >
+            <span class="text-[10px] text-white/50 uppercase tracking-[0.3em] font-medium block mt-1">
+        09 Diciembre, 2025
+    </span>
             <h3 class="text-3xl font-serif mt-3 mb-4 italic">
               Mi último día de interciclo
             </h3>
@@ -922,6 +973,14 @@
                   class="w-full h-full object-contain rounded-xl"
                 />
               </div>
+                            <div
+                class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2"
+              >
+                <img
+                  src="img/roadmap/73.jpeg"
+                  class="w-full h-full object-contain rounded-xl"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -986,6 +1045,14 @@
                   class="w-full h-full object-contain rounded-xl"
                 />
               </div>
+                            <div
+                class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2"
+              >
+                <img
+                  src="img/roadmap/76.jpeg"
+                  class="w-full h-full object-contain rounded-xl"
+                />
+              </div>
               <div
                 class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2"
               >
@@ -1010,6 +1077,9 @@
               class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest"
               >Soyapango</span
             >
+            <span class="text-[10px] text-white/50 uppercase tracking-[0.3em] font-medium block mt-1">
+        Muchas fechas para ser honesto
+    </span>
             <h3 class="text-3xl font-serif mt-3 mb-4 italic">
               Nuestra rutinas en el gym
             </h3>
@@ -1035,6 +1105,9 @@
               class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest"
               >En casita</span
             >
+            <span class="text-[10px] text-white/50 uppercase tracking-[0.3em] font-medium block mt-1">
+        Muchas veces tambien para ser honesto
+    </span>
             <h3 class="text-3xl font-serif mt-3 mb-4 italic">
               Cuando nos despertabamos sin ganas de nada
             </h3>
@@ -1190,6 +1263,9 @@
               class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest"
               >Soyapango</span
             >
+            <span class="text-[10px] text-white/50 uppercase tracking-[0.3em] font-medium block mt-1">
+        07 Febrero, 2026
+    </span>
             <h3 class="text-3xl font-serif mt-3 mb-4 italic">
               El día que nos reconciliamos
             </h3>
@@ -1218,6 +1294,9 @@
               class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest"
               >San Salvador</span
             >
+            <span class="text-[10px] text-white/50 uppercase tracking-[0.3em] font-medium block mt-1">
+        09 Febrero, 2026
+    </span>
             <h3 class="text-3xl font-serif mt-3 mb-4 italic">
               Probando lugares nuevos de comida
             </h3>
@@ -1301,6 +1380,14 @@
               >
                 <img
                   src="img/roadmap/25.JPG"
+                  class="w-full h-full object-contain rounded-xl"
+                />
+              </div>
+                            <div
+                class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2"
+              >
+                <img
+                  src="img/roadmap/74.jpeg"
                   class="w-full h-full object-contain rounded-xl"
                 />
               </div>
@@ -1424,12 +1511,15 @@
               class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest"
               >Hotel Intercontinental, San Salvador</span
             >
+            <span class="text-[10px] text-white/50 uppercase tracking-[0.3em] font-medium block mt-1">
+        28 Febrero - 01 Marzo, 2026
+    </span>
             <h3 class="text-3xl font-serif mt-3 mb-4 italic">
               Nuestra segunda noche juntos
             </h3>
             <p class="text-sm opacity-70 leading-relaxed font-light">
               La verdad esta fue una de las mejores experiencias que he podido
-              pasar a su lado, siempre recordaba que me decía que tenia una
+              pasar a su lado, recuerdo que en la segunda cita por el centro usted me dijo "guapo y si nos quedamos del 28 al 1" y yo no recordaba que era febrero asi que en mi mente creía que se refería a quedarnos el 28,29,30,31 y 1 osea 5 días y aun así acepte en ese plan 😅. Siempre recordaba que me decía que tenia una
               reservación en el hotel intercontinental pero la verdad es que si
               aun nos hubiera tocado dormir en su carro para mi hubiera sido
               genial pero cuando de sorpresa me llevo al hotel me sentí muy
@@ -1453,6 +1543,9 @@
               class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest"
               >San Salvador</span
             >
+            <span class="text-[10px] text-white/50 uppercase tracking-[0.3em] font-medium block mt-1">
+        10 Marzo, 2026
+    </span>
             <h3 class="text-3xl font-serif mt-3 mb-4 italic">
               Puebliando por el mercado San Miguelito
             </h3>
@@ -1638,6 +1731,15 @@
                 />
               </div>
 
+                            <div
+                class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2"
+              >
+                <img
+                  src="img/roadmap/75.jpeg"
+                  class="w-full h-full object-contain rounded-xl"
+                />
+              </div>
+
               <div
                 class="absolute inset-0 transition-opacity duration-500 opacity-0 flex items-center justify-center p-2"
               >
@@ -1740,8 +1842,11 @@
           <div class="text-center md:text-left md:pl-12">
             <span
               class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest"
-              >San Salvador</span
+              >Justo un dia despues</span
             >
+            <span class="text-[10px] text-white/50 uppercase tracking-[0.3em] font-medium block mt-1">
+        18 Marzo, 2025
+    </span>
             <h3 class="text-3xl font-serif mt-3 mb-4 italic">
               El día de mi cumpleaños
             </h3>
@@ -1790,6 +1895,7 @@
             }
           }
         </script>
+
         <div
           class="relative grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-20 z-10"
         >
@@ -1802,6 +1908,9 @@
               class="text-xs font-bold text-[#9d81d4] uppercase tracking-widest"
               >Sección en construcción</span
             >
+            <span class="text-[10px] text-white/50 uppercase tracking-[0.3em] font-medium block mt-1">
+        Cargando ...
+    </span>
             <h3 class="text-3xl font-serif mt-3 mb-4 italic">
               Pon el mouse sobre el signo de interrogación
             </h3>
@@ -1864,14 +1973,14 @@
         <h2
           class="text-3xl md:text-5xl font-serif italic mb-6 text-[#d8c5f5] glow-text"
         >
-          Mis diseños de IA
+          Nosotros segun la IA
         </h2>
         <p
           class="text-sm md:text-base opacity-70 font-light leading-relaxed max-w-2xl mx-auto italic px-4"
         >
-          Estos diseños ya no se los pude mandar en su momento, pero representan
-          algunos de los planes que tenía en mente con usted a futuro. Son
-          imagenes que podía visualizar cada noche al dormir.
+          Cada uno de estos diseños representan
+          algunos de los planes que tenía en mente con usted a futuro, ya que una imagen puede expresar mas ideas que las palabras escritas. Son
+          imagenes que podía visualizar cada noche al dormir. La IA nos hizo pansones 😅
         </p>
       </div>
 
@@ -2012,7 +2121,7 @@
   <section class="py-24 px-6 flex flex-col items-center justify-center">
     <div class="max-w-5xl mx-auto text-center animate__animated animate__fadeIn">
       <h2 class="text-3xl md:text-5xl font-serif italic mb-12 text-[#d8c5f5] glow-text">
-        Mis videos favoritos de ti
+        Mis videos favoritos de usted
       </h2>
 
       <div class="flex flex-col md:flex-row gap-8 justify-center items-center">
@@ -2021,12 +2130,12 @@
           <video controls class="w-full h-auto rounded-[2.5rem]" poster="img/roadmap/44.JPG">
             <source src="media/mipapuchi.mp4" type="video/mp4" />
           </video>
-          <p class="mt-4 text-[10px] uppercase tracking-widest opacity-40">Casualidad #1</p>
+          <p class="mt-4 text-[10px] uppercase tracking-widest opacity-40">Una foto toda linda de usted con Baby Loves de fondo ❤️</p>
         </div>
 
         <div class="glass p-3 rounded-[3rem] border border-[#9d81d4]/30 shadow-2xl relative overflow-hidden max-w-[280px] photo-frame">
           <video controls class="w-full h-auto rounded-[2.5rem]" poster="img/roadmap/71.jpg"> <source src="media/miamorsitobello.mp4" type="video/mp4" /> </video>
-          <p class="mt-4 text-[10px] uppercase tracking-widest opacity-40">Casualidad #2</p>
+          <p class="mt-4 text-[10px] uppercase tracking-widest opacity-40">Usted cantandome una canción a mi 🥹</p>
         </div>
 
       </div>
@@ -2071,7 +2180,7 @@
     <source src="media/Rihanna - Only Girl (In The World) .mp3" type="audio/mpeg">
   </audio>
 
-  <section class="py-24 px-6 glass relative overflow-hidden border-y border-white/5">
+  <section class="py-24 px-6 glass relative overflow-visible border-y border-white/5">
     
     <div class="max-w-4xl mx-auto text-center mb-24 animate__animated animate__fadeIn">
       <h2 class="text-4xl md:text-6xl font-serif italic text-[#d8c5f5] glow-text leading-tight">
@@ -2107,90 +2216,264 @@
       </div>
     </div>
 
-    <div class="max-w-6xl mx-auto pb-10">
-      <h3 class="text-center font-serif text-2xl md:text-3xl italic mb-20 opacity-80">Nuestro Top 3</h3>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+<div class="soundtrack-wrap">
+    <h3 class="st-title">Nuestro Soundtrack</h3>
+    
+    <div class="st-main-container">
         
-        <div class="music-card-premium border-pink-500/20 group">
-          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-pink-500/20 px-4 py-1 rounded-full border border-pink-500/30 text-[9px] tracking-widest uppercase text-pink-300">Rodrigo's Choice</div>
-          <div class="space-y-6 pt-6">
-            <div class="song-item"><span class="song-number text-pink-400">01</span> <p>"No Tears Left To Cry"</p></div>
-            <div class="song-item"><span class="song-number text-pink-400">02</span> <p>"Into You"</p></div>
-            <div class="song-item"><span class="song-number text-pink-400">03</span> <p>"Save Me"</p></div>
-          </div>
+        <div class="st-column side-rodrigo">
+            <span class="st-tag-top rosa">Rodrigo's</span>
+            <div class="st-list">
+                <a href="https://www.youtube.com/watch?v=ffxKSjUwKdU" target="_blank" class="song-card-v5 rosa">
+                    <img src="https://img.youtube.com/vi/ffxKSjUwKdU/mqdefault.jpg" alt="">
+                    <div class="song-name-overlay">No Tears Left To Cry</div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=1ekZEVeXwek" target="_blank" class="song-card-v5 rosa">
+                    <img src="https://img.youtube.com/vi/1ekZEVeXwek/mqdefault.jpg" alt="">
+                    <div class="song-name-overlay">Into You</div>
+                </a>
+<a href="https://www.youtube.com/watch?v=Qu0dIn3_2Zc" target="_blank" class="song-card-v5 rosa">
+    <img src="https://img.youtube.com/vi/Qu0dIn3_2Zc/mqdefault.jpg" alt="Save Me - Remy Zero">
+    <div class="song-name-overlay">Save Me - Remy Zero</div>
+</a>
+            </div>
         </div>
 
-        <div class="music-card-premium border-white/20 scale-105 bg-gradient-to-br from-pink-500/10 via-purple-500/10 to-green-500/10 z-20 shadow-[0_0_50px_rgba(216,197,245,0.2)]">
-          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-white/10 px-6 py-1 rounded-full border border-white/30 text-[10px] tracking-widest uppercase text-white font-bold">La Nuestra ✨</div>
-          <div class="h-full flex flex-col justify-center items-center text-center py-10">
-             <span class="text-4xl mb-6 animate-pulse">💿</span>
-             <p class="text-3xl font-serif italic text-white glow-text">"Chandelier"</p>
-             <p class="text-[10px] tracking-[0.4em] uppercase opacity-40 mt-6 italic">La que nos gusta a ambos</p>
-          </div>
+        <div class="st-center-v2">
+            <a href="https://www.youtube.com/watch?v=2vjPBrBU-TM" target="_blank" class="vinyl-focus">
+                <div class="vinyl-disc-v2">
+                    <img src="https://img.youtube.com/vi/2vjPBrBU-TM/mqdefault.jpg" alt="">
+                    <div class="vinyl-center-point"></div>
+                </div>
+                <div class="vinyl-label-v2">
+                    <p class="center-tag">Nuestra Canción</p>
+                    <h4>Chandelier</h4>
+                </div>
+            </a>
         </div>
 
-        <div class="music-card-premium border-green-500/20 group">
-          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-green-500/20 px-4 py-1 rounded-full border border-green-500/30 text-[9px] tracking-widest uppercase text-green-300">Manu's Choice</div>
-          <div class="space-y-6 pt-6">
-            <div class="song-item"><span class="song-number text-green-400">01</span> <p>"Sonne"</p></div>
-            <div class="song-item"><span class="song-number text-green-400">02</span> <p>"The Reason"</p></div>
-            <div class="song-item"><span class="song-number text-green-400">03</span> <p>"Only Girl"</p></div>
-          </div>
+        <div class="st-column side-manu">
+            <span class="st-tag-top verde">Manu's</span>
+            <div class="st-list">
+                <a href="https://www.youtube.com/watch?v=StZcUAPRRac" target="_blank" class="song-card-v5 verde">
+                    <img src="https://img.youtube.com/vi/StZcUAPRRac/mqdefault.jpg" alt="">
+                    <div class="song-name-overlay">Sonne</div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=fV4DiAyExN0" target="_blank" class="song-card-v5 verde">
+                    <img src="https://img.youtube.com/vi/fV4DiAyExN0/mqdefault.jpg" alt="">
+                    <div class="song-name-overlay">The Reason</div>
+                </a>
+<a href="https://www.youtube.com/watch?v=pa14VNsdSYM" target="_blank" class="song-card-v5 verde">
+    <img src="https://img.youtube.com/vi/pa14VNsdSYM/mqdefault.jpg" alt="Only Girl - Rihanna">
+    <div class="song-name-overlay">Only Girl - Rihanna</div>
+</a>
+            </div>
         </div>
 
-      </div>
     </div>
+</div>
+
+<style>
+    .soundtrack-wrap { padding: 80px 0; color: white; text-align: center; }
+    .st-title { font-family: serif; font-style: italic; font-size: 3rem; margin-bottom: 60px; color: #d8c5f5; }
+    
+    .st-main-container { 
+        display: flex; align-items: center; justify-content: center; 
+        max-width: 1100px; margin: 0 auto; gap: 15px;
+    }
+
+    .st-column { flex: 1; z-index: 5; }
+    .st-tag-top { font-size: 10px; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; display: block; margin-bottom: 20px; }
+    .st-tag-top.rosa { color: #ff85a1; text-shadow: 0 0 10px rgba(255,133,161,0.5); }
+    .st-tag-top.verde { color: #70e000; text-shadow: 0 0 10px rgba(112,224,0,0.5); }
+
+    .st-list { display: flex; flex-direction: column; gap: 15px; }
+
+    /* TARJETAS CON GLOW ORGÁNICO */
+    .song-card-v5 {
+        position: relative; display: block; height: 100px; 
+        border-radius: 20px 40px 20px 40px; /* Forma no rectangular */
+        overflow: hidden; border: 1px solid rgba(255,255,255,0.1);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        filter: saturate(0.8);
+    }
+    
+    .song-card-v5 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.5s; }
+    
+    .song-name-overlay { 
+        position: absolute; bottom: 0; left: 0; right: 0; padding: 12px;
+        background: linear-gradient(transparent, rgba(0,0,0,0.9));
+        font-size: 11px; text-align: left; font-weight: 600; letter-spacing: 0.5px;
+    }
+
+    /* HOVER CON GLOW DE COLOR ESPECÍFICO (Sin sombras cuadradas) */
+    .song-card-v5:hover { 
+        transform: scale(1.08) rotate(1deg); 
+        z-index: 10; 
+        border-color: rgba(255,255,255,0.5);
+        filter: saturate(1.2) drop-shadow(0 0 12px currentColor); /* Glow que sigue la forma */
+        border-radius: 30px;
+    }
+    
+    .song-card-v5.rosa:hover { color: #ff85a1; } /* El drop-shadow usará este color */
+    .song-card-v5.verde:hover { color: #70e000; }
+
+    .song-card-v5:hover img { opacity: 1; transform: scale(1.1); }
+
+    /* VINILO INTEGRADO MEJORADO */
+    .st-center-v2 { flex: 1.1; padding: 0 10px; }
+    .vinyl-focus { 
+        display: block; background: rgba(255,255,255,0.03); border-radius: 50px; 
+        padding: 45px 15px; border: 1px solid rgba(255,255,255,0.1); transition: 0.6s;
+        text-decoration: none; color: white;
+    }
+    .vinyl-focus:hover { transform: scale(1.03); background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.3); }
+
+    .vinyl-disc-v2 { 
+        width: 170px; height: 170px; margin: 0 auto 20px; border-radius: 50%;
+        background: #000; position: relative; border: 10px solid #1a1a1a; 
+        overflow: hidden; animation: spin 18s linear infinite; box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    }
+    .vinyl-disc-v2 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+    .vinyl-center-point { position: absolute; inset: 0; margin: auto; width: 35px; height: 35px; background: #111; border-radius: 50%; border: 3px solid #222; }
+
+    .center-tag { font-size: 9px; text-transform: uppercase; letter-spacing: 4px; opacity: 0.4; margin-bottom: 5px; }
+    .vinyl-label-v2 h4 { font-family: serif; font-style: italic; font-size: 2.2rem; text-shadow: 0 0 15px rgba(216,197,245,0.2); }
+
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    @media (max-width: 900px) {
+        .st-main-container { flex-direction: column; gap: 50px; }
+        .st-center-v2 { order: -1; scale: 0.9; }
+    }
+</style>
   </section>
 </div>
+
+<div id="reproductor-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/90 backdrop-blur-xl transition-all">
+  <div class="relative w-full max-w-3xl px-4">
+    <button onclick="cerrarPlayer()" class="absolute -top-12 right-4 text-white text-4xl font-light hover:scale-110 transition-transform">×</button>
+    <div class="aspect-video w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+      <div id="player-youtube-container"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .play-btn-capsule {
+    @apply w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-[10px] transition-all hover:bg-white/10 hover:scale-110;
+  }
+  .music-card-premium .song-item {
+    @apply border-b border-white/5 pb-4 last:border-0;
+  }
+</style>
+
+<script>
+  function abrirPlayer(idVideo) {
+    const modal = document.getElementById('reproductor-modal');
+    const container = document.getElementById('player-youtube-container');
+    
+    // Pausamos el audio de fondo de Rihanna
+    const audioFondo = document.querySelector('.section-audio');
+    if (audioFondo) audioFondo.pause();
+
+    // Insertamos el video
+    container.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${idVideo}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  }
+
+  function cerrarPlayer() {
+    const modal = document.getElementById('reproductor-modal');
+    const container = document.getElementById('player-youtube-container');
+    
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    container.innerHTML = ''; // Limpiamos para detener el video
+  }
+</script>
 
     <div id="bloque-musical">
       <audio class="section-audio" loop>
     <source src="media/Alex Warren - Ordinary (Official Lyric Video).mp3" type="audio/mpeg">
   </audio>
-      <section class="py-24 px-6">
-      <h2 class="text-center font-serif text-3xl italic mb-16 text-[#d8c5f5]">
-        Nuestras historias favoritas
-      </h2>
-      <div class="series-container max-w-5xl mx-auto">
-        <div class="series-card glass p-2 rounded-2xl w-48 transition-all">
-          <img
-            src="img/seriesfav/1.jpg"
-            class="h-64 w-full object-cover rounded-xl mb-2"
-          />
-          <p class="text-center text-[10px] tracking-widest opacity-60">
-            Wicked For Good
-          </p>
+<section class="py-24 px-6 overflow-hidden">
+  <div class="text-center mb-16">
+    <h2 class="font-serif text-3xl italic text-[#d8c5f5]">Nuestras historias favoritas</h2>
+    <p class="text-[9px] tracking-[0.3em] uppercase opacity-40 mt-4 animate-pulse">
+      — Toca una historia para revelar su secreto —
+    </p>
+  </div>
+
+  <div class="series-container max-w-5xl mx-auto flex flex-wrap justify-center gap-10">
+    
+    <div class="series-card w-48 h-[22rem] [perspective:1000px] cursor-pointer" onclick="flipAndReset(this)">
+      <div class="card-inner relative w-full h-full transition-all duration-700 [transform-style:preserve-3d] shadow-2xl">
+        <div class="card-front absolute inset-0 glass p-2 rounded-2xl [backface-visibility:hidden]">
+          <img src="img/seriesfav/1.jpg" class="h-full w-full object-cover rounded-xl" />
+          <p class="text-center text-[10px] tracking-widest opacity-60 uppercase mt-2 absolute bottom-3 left-1/2 -translate-x-1/2">Wicked</p>
         </div>
-        <div class="series-card glass p-2 rounded-2xl w-48 transition-all">
-          <img
-            src="img/seriesfav/2.jpg"
-            class="h-64 w-full object-cover rounded-xl mb-2"
-          />
-          <p class="text-center text-[10px] tracking-widest opacity-60">
-            Stranger Things
+        <div class="card-back absolute inset-0 glass p-6 rounded-2xl bg-[#9d81d4]/10 [transform:rotateY(180deg)] [backface-visibility:hidden] flex flex-col justify-center items-center text-center border border-[#9d81d4]/30">
+          <h4 class="text-[#9d81d4] text-[10px] uppercase tracking-widest mb-4 font-bold">Wicked</h4>
+          <p class="text-[11px] font-light italic opacity-90 leading-relaxed text-white">
+            Ver esta pelicula a tu lado fue lo mejor del mundo y así como Elphaba y Glinda, lo nuestro también desafió la gravedad. Gracias a que te conocí, he cambiado para bien
           </p>
-        </div>
-        <div class="series-card glass p-2 rounded-2xl w-48 transition-all">
-          <img
-            src="img/seriesfav/3.jpg"
-            class="h-64 w-full object-cover rounded-xl mb-2"
-          />
-          <p class="text-center text-[10px] tracking-widest opacity-60">
-            Sabrina
-          </p>
-        </div>
-        <div class="series-card glass p-2 rounded-2xl w-48 transition-all">
-          <img
-            src="img/seriesfav/4.jpg"
-            class="h-64 w-full object-cover rounded-xl mb-2"
-          />
-          <p class="text-center text-[10px] tracking-widest opacity-60">
-            Harry Potter
-          </p>
+          <div class="h-[1px] w-8 bg-[#9d81d4]/50 mt-4"></div>
         </div>
       </div>
-    </section>
+    </div>
+
+    <div class="series-card w-48 h-[22rem] [perspective:1000px] cursor-pointer" onclick="flipAndReset(this)">
+      <div class="card-inner relative w-full h-full transition-all duration-700 [transform-style:preserve-3d] shadow-2xl">
+        <div class="card-front absolute inset-0 glass p-2 rounded-2xl [backface-visibility:hidden]">
+          <img src="img/seriesfav/2.jpg" class="h-full w-full object-cover rounded-xl" />
+          <p class="text-center text-[10px] tracking-widest opacity-60 uppercase mt-2 absolute bottom-3 left-1/2 -translate-x-1/2">Stranger Things</p>
+        </div>
+        <div class="card-back absolute inset-0 glass p-6 rounded-2xl bg-[#9d81d4]/10 [transform:rotateY(180deg)] [backface-visibility:hidden] flex flex-col justify-center items-center text-center border border-[#9d81d4]/30">
+          <h4 class="text-[#9d81d4] text-[10px] uppercase tracking-widest mb-4 font-bold">Stranger Things</h4>
+          <p class="text-[11px] font-light italic opacity-90 leading-relaxed text-white">
+            Porque en un mundo lleno de cosas extrañas, encontrarte a ti fue lo único que tuvo sentido y perder a alguien que tanto me costó encontrar no es una opción
+          </p>
+          <div class="h-[1px] w-8 bg-[#9d81d4]/50 mt-4"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="series-card w-48 h-[22rem] [perspective:1000px] cursor-pointer" onclick="flipAndReset(this)">
+      <div class="card-inner relative w-full h-full transition-all duration-700 [transform-style:preserve-3d] shadow-2xl">
+        <div class="card-front absolute inset-0 glass p-2 rounded-2xl [backface-visibility:hidden]">
+          <img src="img/seriesfav/3.jpg" class="h-full w-full object-cover rounded-xl" />
+          <p class="text-center text-[10px] tracking-widest opacity-60 uppercase mt-2 absolute bottom-3 left-1/2 -translate-x-1/2">Sabrina</p>
+        </div>
+        <div class="card-back absolute inset-0 glass p-6 rounded-2xl bg-[#9d81d4]/10 [transform:rotateY(180deg)] [backface-visibility:hidden] flex flex-col justify-center items-center text-center border border-[#9d81d4]/30">
+          <h4 class="text-[#9d81d4] text-[10px] uppercase tracking-widest mb-4 font-bold">Sabrina</h4>
+          <p class="text-[11px] font-light italic opacity-90 leading-relaxed text-white">
+            Un poco de magia y un toque de misterio, veíamos capitulos en algunas de nuestras salidas. Contigo cada noche se siente como un hechizo del que no quiero despertar
+          </p>
+          <div class="h-[1px] w-8 bg-[#9d81d4]/50 mt-4"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="series-card w-48 h-[22rem] [perspective:1000px] cursor-pointer" onclick="flipAndReset(this)">
+      <div class="card-inner relative w-full h-full transition-all duration-700 [transform-style:preserve-3d] shadow-2xl">
+        <div class="card-front absolute inset-0 glass p-2 rounded-2xl [backface-visibility:hidden]">
+          <img src="img/seriesfav/4.jpg" class="h-full w-full object-cover rounded-xl" />
+          <p class="text-center text-[10px] tracking-widest opacity-60 uppercase mt-2 absolute bottom-3 left-1/2 -translate-x-1/2">Harry Potter</p>
+        </div>
+        <div class="card-back absolute inset-0 glass p-6 rounded-2xl bg-[#9d81d4]/10 [transform:rotateY(180deg)] [backface-visibility:hidden] flex flex-col justify-center items-center text-center border border-[#9d81d4]/30">
+          <h4 class="text-[#9d81d4] text-[10px] uppercase tracking-widest mb-4 font-bold">Harry Potter</h4>
+          <p class="text-[11px] font-light italic opacity-90 leading-relaxed text-white">
+            ¿Después de todo este tiempo? Siempre. Porque nuestra conexión es la magia más real que he conocido y este universo es tan solo una de las tantas cosas que tenemos en común, usted conserva el lego y yo la varita
+          </p>
+          <div class="h-[1px] w-8 bg-[#9d81d4]/50 mt-4"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
     <section class="py-24 px-6">
       <div class="max-w-4xl mx-auto text-center">
@@ -2314,7 +2597,38 @@
       </div>
     </footer>
     </div>
+<section class="py-32 px-6 relative overflow-hidden text-center mt-20">
+  <div class="max-w-4xl mx-auto">
+    
+    <div class="relative w-80 h-64 mx-auto mb-10">
+      <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 100 100">
+        <path d="M20,50 Q35,20 50,50 T80,50" fill="none" stroke="white" stroke-width="0.3" stroke-dasharray="1,2" />
+        <path d="M30,30 Q50,10 70,30" fill="none" stroke="white" stroke-width="0.2" stroke-dasharray="2,2" />
+        <path d="M40,70 Q50,90 60,70" fill="none" stroke="white" stroke-width="0.2" stroke-dasharray="2,1" />
+      </svg>
 
+      <div class="absolute w-1 h-1 bg-white rounded-full shadow-[0_0_8px_#fff] animate-pulse" style="top: 20%; left: 30%;"></div>
+      <div class="absolute w-2 h-2 bg-white rounded-full shadow-[0_0_12px_#fff] animate-pulse" style="top: 45%; left: 15%;"></div>
+      <div class="absolute w-1.5 h-1.5 bg-[#9d81d4] rounded-full shadow-[0_0_10px_#9d81d4] animate-pulse" style="top: 10%; left: 55%;"></div>
+      <div class="absolute w-1 h-1 bg-white rounded-full shadow-[0_0_8px_#fff] animate-pulse" style="top: 60%; left: 80%;"></div>
+      <div class="absolute w-2 h-2 bg-[#f472b6] rounded-full shadow-[0_0_12px_#f472b6] animate-pulse" style="top: 80%; left: 45%;"></div>
+      <div class="absolute w-1 h-1 bg-white rounded-full shadow-[0_0_8px_#fff] animate-pulse" style="top: 35%; left: 70%;"></div>
+      <div class="absolute w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_10px_#fff] animate-pulse" style="top: 75%; left: 25%;"></div>
+
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <h3 class="font-serif italic text-4xl text-white/90 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">R + M</h3>
+      </div>
+    </div>
+
+    <div class="relative z-10">
+      <p class="text-[10px] tracking-[0.5em] uppercase opacity-50 mb-6">Nuestra historia no tiene fin</p>
+      <div class="h-[1px] w-20 bg-gradient-to-r from-transparent via-white/30 to-transparent mx-auto mb-8"></div>
+      
+      <p class="font-serif italic text-lg opacity-80">"Hecho con todo mi código fuente."</p>
+      <p class="text-[9px] text-white/30 mt-4 tracking-widest">© 2026 - RODRI & MANU</p>
+    </div>
+  </div>
+</section>
 <script>
   const musicInicio = document.getElementById('audio-inicio');
   const carruselSection = document.getElementById('carrusel-section');
@@ -2400,6 +2714,22 @@
     });
   };
 
+  function flipAndReset(card) {
+  const inner = card.querySelector('.card-inner');
+
+  if (inner.style.transform === "rotateY(180deg)") {
+    inner.style.transform = "rotateY(0deg)";
+  } else {
+    inner.style.transform = "rotateY(180deg)";
+    
+    setTimeout(() => {
+      if (inner.style.transform === "rotateY(180deg)") {
+        inner.style.transform = "rotateY(0deg)";
+      }
+    }, 10000); 
+  }
+}
+
   const unlockAudio = () => {
     handleScrollAudio();
     document.removeEventListener('click', unlockAudio);
@@ -2412,18 +2742,111 @@
 </script>
 <script>
   const deck = [
+        {
+      thought: '<span >"Lo que ningún código de programación podrá expresar"</span>',
+      source: "— Latidos de mi ❤️ expresado en palabras"
+    },
     {
-      thought: '<span class="text-pink-wicked">"Yo a su lado sentía que podía volar...</span> y alguien me dijo: <span class="text-green-wicked">todos se merecen una vez volar"</span>.',
+      thought: '<span class="text-pink-wicked">"Yo a su lado siento que puedo volar...</span> y alguien me dijo: <span class="text-green-wicked">todos se merecen una vez volar"</span>',
       source: "— Defying Gravity (Wicked)"
     },
-    {
-      thought: '"No importa cuán lejos estemos, <span class="text-green-wicked">siempre habrá una canción</span> que me haga <span class="text-pink-wicked">sentir que estás aquí"</span>.',
-      source: "— Nuestro Soundtrack"
+        {
+      thought: '<span class="text-pink-wicked">"Me gusta cuando usa la pulsera</span><span class="text-green-wicked"> siento que estoy con usted"</span>',
+      source: "— El amor de mi vida (Manu)"
+    },
+        {
+      thought: '"Gracias a que<span class="text-pink-wicked"> te conocí</span><br>he cambiado<span class="text-green-wicked"> para bien"</span>',
+      source: "— For Good (Wicked: For Good)"
+    },
+            {
+      thought: '"La teoría de los rizos es cierta desde que<span class="text-pink-wicked"> estoy con usted</span><br>  mis rizos son<span class="text-green-wicked"> mas colochitos"</span>',
+      source: "— Alguien que te ama mucho (Rodri)"
+    },
+                {
+      thought: '"Hablando muy enserio<span class="text-pink-wicked"> estoy hasta dispuesto</span><br>  a ver como<span class="text-green-wicked"> lo conquisto"</span>',
+      source: "— El amor de mi vida (Manu)"
+    },
+                    {
+      thought: '<span class="text-pink-wicked">"Y robarle el corazon"</span>',
+      source: "— El amor de mi vida (Manu)"
     },
     {
-      thought: '<span class="text-pink-wicked">"Gracias a que te conocí</span><br><span class="text-green-wicked">he cambiado para bien"</span>.',
-      source: "— Para mi analista favorito"
+      thought: '"No importa cuán lejos estemos, <span class="text-green-wicked">siempre habrá una canción</span> que me haga <span class="text-pink-wicked">sentir que estás aquí"</span>',
+      source: "— Alguien que te ama mucho (Rodri)"
+    },
+                        {
+      thought: '"Mi Rodrigo si<span class="text-pink-wicked"> quiero que exista esto</span><br>  mañana y pasado<span class="text-green-wicked"> y pasado y asi jajaaja"</span>',
+      source: "— El amor de mi vida (Manu)"
+    },
+                            {
+      thought: '"Sinceramente quiero <span class="text-pink-wicked">todo con usted</span><br>  en esta vida<span class="text-green-wicked"> y en todas las que siguen"</span>',
+      source: "— Alguien que te ama mucho (Rodri)"
+    },
+                            {
+      thought: '<span class="text-pink-wicked">"Asi que advertido queda </span>que voy a ver la forma<br><span class="text-green-wicked"> de como conquistarlo"</span>',
+      source: "— El amor de mi vida (Manu)"
     }
+    ,
+                            {
+      thought: '"Por usted <span class="text-pink-wicked">estoy dispuesto a todo en este mundo</span><br>incluso si tenga que <span class="text-green-wicked"> bailar aunque no pueda, en una fiesta"</span>',
+      source: "— Alguien que te ama mucho (Rodri)"
+    },
+                           {
+      thought: '"Porque todos necesitamos <span class="text-pink-wicked">un poquito de magia ✨♥️ </span><br>y una voz que <span class="text-green-wicked"> nos acompañe siempre"</span>',
+      source: "— El amor de mi vida (Manu)"
+    }
+    ,
+{
+  thought: 'Nunca supe que se podía <span class="text-pink-wicked">sostener la luz de Luna</span> en las manos... hasta la noche en que <span class="text-pink-wicked">por fin te abracé</span>',
+  source: "— Moonlight (Ariana Grande)"
+},
+{
+  thought: 'No dejes de amarme, estoy <span class="text-green-wicked">peleando puño a puño con el fuego</span> solo para acercarme a ti... debe ser <span class="text-green-wicked">amor en el cerebro</span>',
+  source: "— Love on the Brain (Rihanna)"
+},
+                           {
+      thought: '<span class="text-pink-wicked">"Que esos colochos</span><br><span class="text-green-wicked"> duren para siempre"</span>',
+      source: "— El amor de mi vida (Manu)"
+    }
+    ,
+        {
+      thought: '<span >"Y por si aun no he sido lo suficientemente especifico"</span>',
+      source: "— Alguien que te ama mucho (Rodri)"
+    },
+    {
+      thought: '"<span class="text-pink-wicked">Te Amo Mucho</span><br><span class="text-pink-wicked"> Manuel Alejandro Fuentes Ramos"</span>',
+      source: "— Alguien que te ama mucho (Rodri)"
+    },
+        {
+      thought: '"<span class="text-pink-wicked">De parte de</span><br><span class="text-pink-wicked"> Rodrigo Humberto Aguilera Mendoza"</span>',
+      source: "— Alguien que te ama muchi (Rodri)"
+    },
+    {
+      thought: '<span class="text-pink-wicked">"Robaste mi corazón y eres la unica persona que he amado tan profundamente"</span>',
+      source: "— Alguien que te ama mucho (Rodri)"
+    },
+
+                            {
+      thought: '<span class="text-pink-wicked">"Asi que queda advertido que </span>tambien buscare la forma<br><span class="text-green-wicked"> de como conquistarlo"</span>',
+      source: "— Alguien que te ama mucho (Rodri)"
+    },
+        {
+      thought: '<span class="text-pink-wicked">"Eres el amor de mi vida, te quiero mucho mi guapo"</span>',
+      source: "— Alguien que te ama mucho (Rodri)"
+    },
+            {
+      thought: '<span class="text-pink-wicked">"Y estoy dispuesto a esperar el tiempo que sea por ti"</span>',
+      source: "— Alguien que te ama mucho (Rodri)"
+    },
+                {
+      thought: '<span class="text-pink-wicked">"Incluso si Rihanna saca album antes o Ariana pise Latinoamerica jajaja"</span>',
+      source: "— Alguien que te ama mucho (Rodri)"
+    },
+    
+{
+  thought: '<span class="text-pink-wicked">"Hecho con todo el amor del mundo"</span><br><span class="text-pink-wicked font-bold mt-2 inline-block">Te Amo Guapo</span>',
+  source: "— Alguien que te ama mucho (Rodri)"
+}
   ];
 
   let deckIndex = 0;
@@ -2450,5 +2873,6 @@
   setInterval(updateDeck, 7000);
   setTimeout(updateDeck, 500); 
 </script>
+
   </body>
 </html>
