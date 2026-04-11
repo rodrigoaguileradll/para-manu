@@ -45,7 +45,7 @@
 
       body {
         font-family: "Inter", sans-serif;
-        /* Amanecer: */
+
         background: linear-gradient(
           180deg,
           var(--bg-deep) 0%,
@@ -104,35 +104,32 @@
       }
 
       /* MARCOS CUADRADOS GRANDES */
-/* Borra tu clase .profile-card vieja y pon esta */
+
 .profile-card {
   width: 140px;
   height: 160px;
-  border-radius: 2rem; /* Mantengo tu radio de borde */
+  border-radius: 2rem; 
   border: 2px solid var(--accent-purple);
   overflow: hidden;
   
-  /* EL SECRETO: El resplandor (Glow) */
   box-shadow: 0 0 15px rgba(157, 129, 212, 0.3);
   
-  /* Fondo de cristal sutil */
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
 
-  /* Transición suave para el hover */
+  
   transition: all 0.4s ease-out;
   cursor: pointer;
 }
 
-/* Efecto al pasar el mouse (Hover) */
 .profile-card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 10px 30px rgba(157, 129, 212, 0.5); /* El glow se intensifica */
-  border-color: #fff; /* El borde se vuelve blanco */
+  box-shadow: 0 10px 30px rgba(157, 129, 212, 0.5); 
+  border-color: #fff; 
 }
       /* INFINITE LOOP CAROUSEL */
-/* Limpia tu CSS anterior del carrusel y pon este */
+
 .carousel-container {
   width: 100%;
   overflow: hidden;
@@ -141,8 +138,8 @@
 
 .carousel-track {
   display: flex;
-  width: max-content; /* Importante para que no se amontonen */
-  animation: scrollInfinite 40s linear infinite; /* 40s para que sea suave y nostálgico */
+  width: max-content; 
+  animation: scrollInfinite 40s linear infinite; 
 }
 
 .carousel-img {
@@ -151,7 +148,7 @@
   margin-right: 20px;
   border-radius: 1.5rem;
   object-fit: cover;
-  flex-shrink: 0; /* Evita que las fotos se aplasten */
+  flex-shrink: 0; 
 }
 
 @keyframes scrollInfinite {
@@ -159,12 +156,11 @@
     transform: translateX(0);
   }
   100% {
-    /* Mueve la mitad del ancho total del track duplicado */
+
     transform: translateX(-50%);
   }
 }
 
-/* Pausar al pasar el mouse para que Manu pueda ver bien una foto */
 .carousel-track:hover {
   animation-play-state: paused;
 }
@@ -338,7 +334,6 @@
     @apply scale-105 origin-left transition-transform;
   }
 
-  /* Animación suave para el cúmulo final */
 .constellation-container div {
   animation: float-stars 4s ease-in-out infinite;
 }
@@ -356,7 +351,7 @@ section:last-of-type {
 
 .roadmap-footer p {
   letter-spacing: 0.05em;
-  /* Un efecto de fade-in cuando el usuario llega al final del roadmap */
+
   animation: fadeInSlightly 2s ease-in;
 }
 
@@ -372,8 +367,8 @@ section:last-of-type {
 /* Contenedor padre para dar aire */
 .roadmap-header-container {
   position: relative;
-  z-index: 50; /* Más alto que la línea del roadmap */
-  background-color: transparent; /* O el color de tu fondo si quieres que tape la línea */
+  z-index: 50; 
+  background-color: transparent; 
 }
 
 #roadmap-header {
@@ -385,14 +380,14 @@ section:last-of-type {
   text-shadow: 0 0 10px rgba(135, 192, 65, 0.4);
 }
 
-/* Ajuste para que el primer evento no se suba */
+
 .max-w-6xl {
   margin-top: 4rem !important;
-}/* Contenedor padre para dar aire */
+}
 .roadmap-header-container {
   position: relative;
-  z-index: 50; /* Más alto que la línea del roadmap */
-  background-color: transparent; /* O el color de tu fondo si quieres que tape la línea */
+  z-index: 50;
+  background-color: transparent; 
 }
 
 #roadmap-header {
@@ -404,7 +399,6 @@ section:last-of-type {
   text-shadow: 0 0 10px rgba(135, 192, 65, 0.4);
 }
 
-/* Ajuste para que el primer evento no se suba */
 .max-w-6xl {
   margin-top: 4rem !important;
 }
@@ -2400,7 +2394,6 @@ section:last-of-type {
 
     .st-list { display: flex; flex-direction: column; gap: 15px; }
 
-    /* TARJETAS CON GLOW ORGÁNICO */
     .song-card-v5 {
         position: relative; display: block; height: 100px; 
         border-radius: 20px 40px 20px 40px; /* Forma no rectangular */
@@ -2417,21 +2410,20 @@ section:last-of-type {
         font-size: 11px; text-align: left; font-weight: 600; letter-spacing: 0.5px;
     }
 
-    /* HOVER CON GLOW DE COLOR ESPECÍFICO (Sin sombras cuadradas) */
+ 
     .song-card-v5:hover { 
         transform: scale(1.08) rotate(1deg); 
         z-index: 10; 
         border-color: rgba(255,255,255,0.5);
-        filter: saturate(1.2) drop-shadow(0 0 12px currentColor); /* Glow que sigue la forma */
+        filter: saturate(1.2) drop-shadow(0 0 12px currentColor); 
         border-radius: 30px;
     }
     
-    .song-card-v5.rosa:hover { color: #ff85a1; } /* El drop-shadow usará este color */
+    .song-card-v5.rosa:hover { color: #ff85a1; } 
     .song-card-v5.verde:hover { color: #70e000; }
 
     .song-card-v5:hover img { opacity: 1; transform: scale(1.1); }
 
-    /* VINILO INTEGRADO MEJORADO */
     .st-center-v2 { flex: 1.1; padding: 0 10px; }
     .vinyl-focus { 
         display: block; background: rgba(255,255,255,0.03); border-radius: 50px; 
@@ -2484,11 +2476,9 @@ section:last-of-type {
     const modal = document.getElementById('reproductor-modal');
     const container = document.getElementById('player-youtube-container');
     
-    // Pausamos el audio de fondo de Rihanna
     const audioFondo = document.querySelector('.section-audio');
     if (audioFondo) audioFondo.pause();
 
-    // Insertamos el video
     container.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${idVideo}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
     
     modal.classList.remove('hidden');
