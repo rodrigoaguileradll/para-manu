@@ -2876,14 +2876,35 @@ section:last-of-type {
   }
 
   // 3. Desbloqueo de Audio para Mobile
-  const unlockAudio = () => {
-    // Intentamos reproducir y pausar brevemente todos los audios para "despertarlos"
-    if (musicInicio) musicInicio.play().then(() => musicInicio.pause()).catch(() => {});
-    
-    handleScrollAudio();
-    document.removeEventListener('click', unlockAudio);
-    document.removeEventListener('touchstart', unlockAudio);
-  };
+const unlockAudio = () => {
+  // 1. Despertamos el audio de inicio
+  if (musicInicio) {
+    musicInicio.play().then(() => {
+      // Lo reproducimos y pausamos de inmediato para que el canal quede abierto
+      musicInicio.pause(); 
+    }).catch(e => console.log("Error al despertar inicio:", e));
+  }
+
+  // 2. Despertamos TODOS los audios de las secciones
+  musicSections.forEach(container => {
+    const audio = container.querySelector('.section-audio');
+    if (audio) {
+      // Los silenciamos y les damos play/pause para "engañar" al iPhone
+      audio.muted = true;
+      audio.play().then(() => {
+        audio.pause();
+        audio.muted = false; // Ya están listos para sonar cuando llegues a la sección
+      }).catch(() => {});
+    }
+  });
+
+  // 3. Ejecutamos el manejo de scroll inmediatamente
+  handleScrollAudio();
+
+  // Limpiamos los eventos para que no se repita
+  document.removeEventListener('click', unlockAudio);
+  document.removeEventListener('touchstart', unlockAudio);
+};
 
   // Listeners
   window.addEventListener('scroll', handleScrollAudio);
