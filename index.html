@@ -2119,7 +2119,7 @@ section:last-of-type {
           class="text-sm md:text-base opacity-70 font-light leading-relaxed max-w-2xl mx-auto italic px-4"
         >
           Cada uno de estos diseños representan
-          algunos de los planes que tenía en mente con usted a futuro, ya que una imagen puede expresar mas ideas que las palabras escritas. Son
+          algunos de los planes que tengo en mente con usted a futuro, ya que una imagen puede expresar mas ideas que las palabras escritas. Son
           imagenes que podía visualizar cada noche al dormir. La IA nos hizo pansones 😅
         </p>
       </div>
@@ -2293,9 +2293,9 @@ section:last-of-type {
 </div>
 
 <div class="bloque-con-audio">
-  <audio class="section-audio" loop>
-    <source src="media/A New Good Starting.mp3" type="audio/mpeg">
-  </audio>
+<audio class="section-audio" loop preload="auto">
+  <source src="media/A New Good Starting.mp3" type="audio/mpeg">
+</audio>
 
   <section class="py-32 px-6 text-center">
     <div class="max-w-5xl mx-auto">
@@ -2772,8 +2772,10 @@ section:last-of-type {
   const roadmapSection = document.getElementById('roadmap-section');
   const notasVoz = document.querySelectorAll('.nota-voz');
   
+  // Detecta secciones con audio
   const musicSections = document.querySelectorAll('section:has(.section-audio), div:has(.section-audio)');
 
+  // 1. Manejo de Notas de Voz (Ducking del audio principal)
   notasVoz.forEach(nota => {
     nota.onplay = () => { if (musicInicio) musicInicio.volume = 0.1; };
     nota.onpause = () => { handleScrollAudio(); };
@@ -2784,10 +2786,11 @@ section:last-of-type {
     const windowHeight = window.innerHeight;
     const windowCenter = windowHeight / 2;
 
-    const carruselRect = carruselSection.getBoundingClientRect();
-    const roadmapRect = roadmapSection.getBoundingClientRect();
+    const carruselRect = carruselSection ? carruselSection.getBoundingClientRect() : { bottom: -1, top: -1 };
+    const roadmapRect = roadmapSection ? roadmapSection.getBoundingClientRect() : { top: windowHeight + 1 };
 
-    if (carruselRect.bottom > 0 && roadmapRect.top > windowCenter) {
+    // --- Lógica de Música de Inicio ---
+    if (musicInicio && carruselRect.bottom > 0 && roadmapRect.top > windowCenter) {
       if (musicInicio.paused) musicInicio.play().catch(() => {});
       const notaSonando = Array.from(notasVoz).some(n => !n.paused);
       if (!notaSonando) {
@@ -2799,6 +2802,9 @@ section:last-of-type {
       if (musicInicio && !musicInicio.paused) musicInicio.pause();
     }
 
+    // --- Lógica de Secciones (Soundtracks) ---
+    let yaHayUnAudioSonando = false; // Flag para evitar mezclas
+
     musicSections.forEach(container => {
       const audio = container.querySelector('.section-audio');
       const videosInBlock = container.querySelectorAll('video'); 
@@ -2806,15 +2812,21 @@ section:last-of-type {
 
       const rect = container.getBoundingClientRect();
       
-      if (rect.top < windowHeight && rect.bottom > 0) {
-        
+      // Verificamos si la sección está lo suficientemente visible (más del 20%)
+      const isVisible = rect.top < windowHeight * 0.8 && rect.bottom > windowHeight * 0.2;
+
+      if (isVisible && !yaHayUnAudioSonando) {
         const algunVideoSonando = Array.from(videosInBlock).some(v => !v.paused);
 
         if (algunVideoSonando) {
           if (!audio.paused) audio.pause(); 
         } else {
+          // Si esta sección es la principal en pantalla, la marcamos
+          yaHayUnAudioSonando = true;
+
           if (audio.paused) audio.play().catch(() => {});
           
+          // Cálculo de volumen suave (Efecto fade según posición)
           let vol = 0;
           if (rect.top <= 0 && rect.bottom >= windowHeight) {
             vol = 1; 
@@ -2822,57 +2834,58 @@ section:last-of-type {
             const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
             vol = visibleHeight / windowHeight;
           }
-          audio.volume = Math.pow(vol, 2); 
+          // Usamos un exponencial para que el desvanecimiento sea más natural
+          audio.volume = Math.pow(Math.max(0, Math.min(1, vol)), 1.5); 
         }
 
-        videosInBlock.forEach(video => {
-          video.onplay = () => { 
-            audio.pause(); 
-          }; 
-          video.onpause = () => { 
-            const otroVideoSonando = Array.from(videosInBlock).some(v => !v.paused);
-            if (!otroVideoSonando) {
-              audio.play().catch(() => {}); 
-              handleScrollAudio(); 
-            }
-          };
-          video.onended = () => { 
-            const otroVideoSonando = Array.from(videosInBlock).some(v => !v.paused);
-            if (!otroVideoSonando) {
-              audio.play().catch(() => {}); 
-              handleScrollAudio();
-            }
-          };
-        });
+        // Configuración de eventos para videos (una sola vez)
+        if (!audio.dataset.eventsSet) {
+          videosInBlock.forEach(video => {
+            video.onplay = () => audio.pause();
+            video.onpause = () => { if (!Array.from(videosInBlock).some(v => !v.paused)) handleScrollAudio(); };
+            video.onended = () => { if (!Array.from(videosInBlock).some(v => !v.paused)) handleScrollAudio(); };
+          });
+          audio.dataset.eventsSet = "true";
+        }
 
       } else {
-        if (!audio.paused) audio.pause();
+        // Si no está visible o ya hay otro audio dominando, silenciamos esta sección
+        if (!audio.paused) {
+          // Pequeño fade out antes de pausar (opcional)
+          audio.volume = Math.max(0, audio.volume - 0.1);
+          if (audio.volume < 0.1) audio.pause();
+        }
       }
     });
   };
 
+  // 2. Función de las Cards (Se mantiene intacta)
   function flipAndReset(card) {
-  const inner = card.querySelector('.card-inner');
-
-  if (inner.style.transform === "rotateY(180deg)") {
-    inner.style.transform = "rotateY(0deg)";
-  } else {
-    inner.style.transform = "rotateY(180deg)";
-    
-    setTimeout(() => {
-      if (inner.style.transform === "rotateY(180deg)") {
-        inner.style.transform = "rotateY(0deg)";
-      }
-    }, 10000); 
+    const inner = card.querySelector('.card-inner');
+    if (!inner) return;
+    if (inner.style.transform === "rotateY(180deg)") {
+      inner.style.transform = "rotateY(0deg)";
+    } else {
+      inner.style.transform = "rotateY(180deg)";
+      setTimeout(() => {
+        if (inner.style.transform === "rotateY(180deg)") {
+          inner.style.transform = "rotateY(0deg)";
+        }
+      }, 10000); 
+    }
   }
-}
 
+  // 3. Desbloqueo de Audio para Mobile
   const unlockAudio = () => {
+    // Intentamos reproducir y pausar brevemente todos los audios para "despertarlos"
+    if (musicInicio) musicInicio.play().then(() => musicInicio.pause()).catch(() => {});
+    
     handleScrollAudio();
     document.removeEventListener('click', unlockAudio);
     document.removeEventListener('touchstart', unlockAudio);
   };
 
+  // Listeners
   window.addEventListener('scroll', handleScrollAudio);
   document.addEventListener('click', unlockAudio);
   document.addEventListener('touchstart', unlockAudio);
